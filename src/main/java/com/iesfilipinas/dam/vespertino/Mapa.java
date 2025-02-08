@@ -90,10 +90,10 @@ public class Mapa {
 
     private Casilla getCasilla(int x, int y, int z) {
         if (x >= 0 && y >= 0 && z >= 0 && x < mapaMaxX && y < mapaMaxY && z < mapaMaxZ) { // Límites del mapa
-            if (terrenos[z][x][y] == null) { // Si no está creada, la instanciamos
-                terrenos[z][x][y] = new Casilla(x, y, z, sacarTerrenoCasilla(plantillaTerrenos[x][y][z]));
+            if (terrenos[x][y][z] == null) { // Si no está creada, la instanciamos
+                terrenos[x][y][z] = new Casilla(x, y, z, sacarTerrenoCasilla(plantillaTerrenos[x][y][z]));
             }
-            return terrenos[z][x][y];
+            return terrenos[x][y][z];
         }
         return null; // Casilla fuera del mapa
     }
