@@ -4,7 +4,7 @@ public class Jugador extends Persona {
  
     private int vida;
 
-    public Jugador(int x, int y, int z) {
+    public Jugador(int x, int y, int z, String nombre) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -16,6 +16,10 @@ public class Jugador extends Persona {
         if (vida <= 0) {
             vivo = false;
         }
+    }
+
+    public void quitarVida(int cantidad) {
+        this.vida -= cantidad;
     }
 
     // Getters y Setters
