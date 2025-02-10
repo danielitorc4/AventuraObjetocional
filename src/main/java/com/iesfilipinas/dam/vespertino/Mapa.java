@@ -1,12 +1,10 @@
 package com.iesfilipinas.dam.vespertino;
 
-import com.iesfilipinas.dam.TiposDeTerreno;
-
 public class Mapa {
     private static final int mapaMaxX = 11; // Ancho 
     private static final int mapaMaxY = 9; // Alto 
     private static final int mapaMaxZ = 4; // Profundidad 
-   
+
     private Jugador jugador;
     private Casilla[][][] terrenos;
 
@@ -14,7 +12,6 @@ public class Mapa {
         this.jugador = jugador;
         this.terrenos = new Casilla[mapaMaxX][mapaMaxY][mapaMaxZ];
     }
-
 
     // Plantilla del mapa
     private String[][][] plantillaTerrenos = {
@@ -64,7 +61,71 @@ public class Mapa {
         }
     };
 
-
+    // Cargar la casilla del jugador y las que la rodean en el mismo piso (Lazy Initialization) (Un 3x3)
+    public void cargarCasillasVisibles() {
+        System.out.println("\nCasillas visibles:");
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int nx = jugador.getX() + i;
+                int ny = jugador.getY() + j;
+                if (nx >= 0 && ny >= 0 && nx < mapaMaxX && ny < mapaMaxY) {
+                    if (nx == jugador.getX() && ny == jugador.getY()) { // Carga el jugador
+                        System.out.print(" (jugador) ");
+                    } else {
+                        Casilla casilla = obtenerOCrearCasilla(nx, ny, jugador.getZ());
+                        System.out.print("[" + nx + "," + ny + "," + jugador.getZ() + "] ");
+                        System.out.print(casilla.getTerreno());
+                        if (casilla.getNPCs() != null && !casilla.getNPCs().isEmpty() || 
+                        casilla.getObjetos() != null && !casilla.getObjetos().isEmpty()) {
+                             System.out.print("*");
+                        }
+                        System.out.print(" ");
+                    }
+                }
+            }
+            System.out.println();
+        }
+    }
+    public void moverse(Jugador jugador, String input) {
+        switch (input) {
+            case "arriba","w" -> {
+                if (!esUnMovimientoValido(jugador, input)) { 
+                    break;
+                }
+                jugador.setY(jugador.getY() - 1);
+            }
+            case "abajo", "s" -> {
+                 if (!esUnMovimientoValido(jugador, input)) { 
+                     break;
+                 }
+                 jugador.setY(jugador.getY() + 1);
+             }
+            case "izquierda", "a" -> {
+                 if (!esUnMovimientoValido(jugador, input)) { 
+                     break;
+                 }
+                 jugador.setX(jugador.getX() - 1);
+             }
+            case "derecha", "d" -> { 
+                 if (!esUnMovimientoValido(jugador, input)) { 
+                     break;
+                 }
+                 jugador.setX(jugador.getX() + 1);
+             }
+        }
+    }
+    public void colocarNPC(int x, int y, int z, Npc npc) {
+        Casilla casilla = obtenerOCrearCasilla(x, y, z);
+        if (casilla != null) {
+            casilla.agregarNPC(npc);
+        }
+    }
+    public void colocarObjeto(int x, int y, int z, Objeto objeto) {
+        Casilla casilla = obtenerOCrearCasilla(x, y, z);
+        if (casilla != null) {
+            casilla.agregarObjeto(objeto);
+        }
+    }
     private TiposDeTerreno sacarTerrenoCasilla(String tipo) {
         switch (tipo) {
             // Generales
@@ -93,8 +154,6 @@ public class Mapa {
             default: return TiposDeTerreno.DESCONOCIDO;
         }
     }
-
-
     private Casilla obtenerOCrearCasilla(int x, int y, int z) {
         if (x >= 0 && y >= 0 && z >= 0 && x < mapaMaxX && y < mapaMaxY && z < mapaMaxZ) { // Límites del mapa
             if (terrenos[x][y][z] == null) { // Si no está creada, la instanciamos
@@ -104,55 +163,6 @@ public class Mapa {
         }
         return null; // Casilla fuera del mapa
     }
-
-    // Cargar la casilla del jugador y las que la rodean en el mismo piso (Lazy Initialization) (Un 3x3)
-    public void cargarCasillasVisibles() {
-        System.out.println("\nCasillas visibles:");
-        for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j <= 1; j++) {
-                int nx = jugador.getX() + i;
-                int ny = jugador.getY() + j;
-                if (nx >= 0 && ny >= 0 && nx < mapaMaxX && ny < mapaMaxY) {
-                   if (nx == jugador.getX() && ny == jugador.getY()) { // Carga el jugador
-                    System.out.print(" (jugador) ");
-                   } else {
-                       System.out.print(obtenerOCrearCasilla(nx, ny, jugador.getZ()).getTerreno() + " ");  // Carga las casillas
-                   }
-                }
-            }
-            System.out.println();
-        }
-    }
-
-   public void moverse(Jugador jugador, String input) {
-       switch (input) {
-           case "arriba","w" -> {
-               if (!esUnMovimientoValido(jugador, input)) { 
-                   break;
-               }
-               jugador.setY(jugador.getY() - 1);
-           }
-           case "abajo", "s" -> {
-                if (!esUnMovimientoValido(jugador, input)) { 
-                    break;
-                }
-                jugador.setY(jugador.getY() + 1);
-            }
-           case "izquierda", "a" -> {
-                if (!esUnMovimientoValido(jugador, input)) { 
-                    break;
-                }
-                jugador.setX(jugador.getX() - 1);
-            }
-           case "derecha", "d" -> { 
-                if (!esUnMovimientoValido(jugador, input)) { 
-                    break;
-                }
-                jugador.setX(jugador.getX() + 1);
-            }
-       }
-   }
-
     private boolean esUnMovimientoValido(Jugador jugador, String direccion) {
         int newX = jugador.getX();
         int newY = jugador.getY();

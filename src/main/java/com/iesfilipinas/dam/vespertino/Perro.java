@@ -2,8 +2,8 @@ package com.iesfilipinas.dam.vespertino;
 
 public class Perro extends Npc{
 
-    public Perro(String nombre) {
-        this.nombre = nombre;
+    public Perro(int x, int y, int z) {
+        super("Perro", x, y, z, TipoNPC.PERRO);
     }
     @Override
     public void hablar() {

@@ -5,11 +5,8 @@ public class Jugador extends Persona {
     private int vida;
 
     public Jugador(int x, int y, int z, String nombre) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        super(x, y, z, nombre);
         this.vida = 100;
-        this.vivo = true;
     }
 
     private void actualizarVivo() {

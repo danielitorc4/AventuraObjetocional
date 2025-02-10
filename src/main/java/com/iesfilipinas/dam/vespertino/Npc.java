@@ -2,13 +2,18 @@ package com.iesfilipinas.dam.vespertino;
 
 public abstract class Npc extends Persona implements Interactuable {
 
-    protected String tipo;
+    protected TipoNPC tipo;
+
+    public Npc(String nombre, int x, int y, int z, TipoNPC tipo) {
+        super(x, y, z, nombre);
+        this.tipo = tipo;
+    }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getTipo() {
+    public TipoNPC getTipo() {
         return tipo;
     }
 

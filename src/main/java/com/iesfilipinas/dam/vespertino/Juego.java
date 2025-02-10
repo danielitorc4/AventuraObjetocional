@@ -24,6 +24,8 @@ public class Juego {
 
         Jugador jugador = new Jugador(5, 3, 1, nombreJugador);
         Mapa mapa = new Mapa(jugador);
+        inicializarNpcs(mapa);
+        inicializarObjetos(mapa);
 
         bucleJuego(jugador, mapa);
  
@@ -63,4 +65,13 @@ public class Juego {
         System.out.println();
     }
 
+    private void inicializarNpcs(Mapa mapa) {
+        Perro perro = new Perro(0, 0, 0);
+        mapa.colocarNPC(0, 0, 1, perro); // Ajustar ambas coordenadas
+        // Colocar npcs
+    }
+
+    private void inicializarObjetos(Mapa mapa) {
+
+    }
 }
