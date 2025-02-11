@@ -92,25 +92,25 @@ public class Mapa {
                 if (!esUnMovimientoValido(jugador, input)) { 
                     break;
                 }
-                jugador.setY(jugador.getY() - 1);
+                jugador.setX(jugador.getX() - 1);
             }
             case "abajo", "s" -> {
                  if (!esUnMovimientoValido(jugador, input)) { 
                      break;
                  }
-                 jugador.setY(jugador.getY() + 1);
+                 jugador.setX(jugador.getX() + 1);
              }
             case "izquierda", "a" -> {
                  if (!esUnMovimientoValido(jugador, input)) { 
                      break;
                  }
-                 jugador.setX(jugador.getX() - 1);
+                 jugador.setY(jugador.getY() - 1);
              }
             case "derecha", "d" -> { 
                  if (!esUnMovimientoValido(jugador, input)) { 
                      break;
                  }
-                 jugador.setX(jugador.getX() + 1);
+                 jugador.setY(jugador.getY() + 1);
              }
         }
     }
@@ -135,7 +135,7 @@ public class Mapa {
             // Sótano
             case "S": return TiposDeTerreno.SOTANO;
             // Exterior
-            case "P": return TiposDeTerreno.CASETAPERRO;
+            case "CP": return TiposDeTerreno.CASETAPERRO;
             case "J": return TiposDeTerreno.JARDIN;
             case "CO": return TiposDeTerreno.COBERTIZO;
             case "CN": return TiposDeTerreno.CONTINENTE;
@@ -145,7 +145,7 @@ public class Mapa {
             case "CC": return TiposDeTerreno.COCINA;
             case "CM": return TiposDeTerreno.COMEDOR;
             // Piso 1
-            case "H": return TiposDeTerreno.HABITACION; // Es del P1 también
+            case "H": return TiposDeTerreno.HABITACION; 
             case "CD": return TiposDeTerreno.SALACUADRO;
             case "PA": return TiposDeTerreno.PASILLO;
             case "HN": return TiposDeTerreno.HABITACIONNINO;
