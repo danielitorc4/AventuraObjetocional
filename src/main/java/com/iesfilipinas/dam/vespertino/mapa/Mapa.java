@@ -1,5 +1,7 @@
 package com.iesfilipinas.dam.vespertino.mapa;
 
+import java.util.Scanner;
+
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Objeto;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Npc;
@@ -11,10 +13,12 @@ public class Mapa {
 
     private Jugador jugador;
     private Casilla[][][] terrenos;
+    private Scanner scan;
 
-    public Mapa(Jugador jugador) {
+    public Mapa(Jugador jugador, Scanner scan) {
         this.jugador = jugador;
         this.terrenos = new Casilla[mapaMaxX][mapaMaxY][mapaMaxZ];
+        this.scan = scan;
     }
 
     // Plantilla del mapa
@@ -90,7 +94,7 @@ public class Mapa {
             System.out.println();
         }
     }
-    public void moverse(Jugador jugador, String input) {
+    public void realizarAccionOMovimiento(Jugador jugador, String input) {
         switch (input) {
             case "arriba","w" -> {
                 if (!esUnMovimientoValido(jugador, input)) { 
@@ -115,6 +119,11 @@ public class Mapa {
                      break;
                  }
                  jugador.setY(jugador.getY() + 1);
+             }
+             case "interactuar", "e" -> {
+                 Casilla casilla = obtenerOCrearCasilla(jugador.getX(), jugador.getY(), jugador.getZ());
+                 mostrarInteractuables(casilla);
+
              }
         }
     }
@@ -143,6 +152,7 @@ public class Mapa {
             case "J": return TiposDeTerreno.JARDIN;
             case "CO": return TiposDeTerreno.COBERTIZO;
             case "CN": return TiposDeTerreno.CONTINENTE;
+            case "I": return TiposDeTerreno.INICIO;
             // Planta baja
             case "EN": return TiposDeTerreno.ENTRADA; // Es del exterior también
             case "SA": return TiposDeTerreno.SALON; // Es del P1 también
@@ -198,5 +208,26 @@ public class Mapa {
         return true;
     }
 
+    private void mostrarInteractuables(Casilla casilla) {
+        if ((casilla.getNPCs() == null || casilla.getNPCs().isEmpty()) && (casilla.getObjetos() == null || casilla.getObjetos().isEmpty())) {
+            System.out.println("No hay nada ni nadie con lo que interactuar.");
+            return;
+        }
+
+        System.out.println("¿Con qué quieres interactuar?");
+        if (casilla.getNPCs() != null && !casilla.getNPCs().isEmpty()) {
+            for (Npc npc : casilla.getNPCs()) {
+                System.out.println("-" + npc.getNombre());
+            }
+        }
+        if (casilla.getObjetos() != null && !casilla.getObjetos().isEmpty()) {
+            for (Objeto objeto : casilla.getObjetos()) {
+                System.out.println("+ " + objeto.getNombre());
+            }
+        }
+
+        String input = scan.nextLine().toLowerCase();
+        // Implementar que ejecute el método interactuar() pertinente
+    }
 
 }
