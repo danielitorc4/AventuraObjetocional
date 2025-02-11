@@ -169,10 +169,10 @@ public class Mapa {
         int newZ = jugador.getZ();
         
         switch (direccion) { // Nueva posición
-            case "arriba", "w" -> newY--;
-            case "abajo", "s" -> newY++;
-            case "izquierda", "a" -> newX--;
-            case "derecha", "d" -> newX++;
+            case "arriba", "w" -> newX--;
+            case "abajo", "s" -> newX++;
+            case "izquierda", "a" -> newY--;
+            case "derecha", "d" -> newY++;
         }
         
         if (newX < 0 || newX >= mapaMaxX || newY < 0 || newY >= mapaMaxY || newZ < 0 || newZ >= mapaMaxZ) { // Out of bounds
