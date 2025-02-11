@@ -75,7 +75,7 @@ public class Mapa {
                         Casilla casilla = obtenerOCrearCasilla(nx, ny, jugador.getZ());
                         System.out.print("[" + nx + "," + ny + "," + jugador.getZ() + "] ");
                         System.out.print(casilla.getTerreno());
-                        if (casilla.getNPCs() != null && !casilla.getNPCs().isEmpty() || 
+                        if (casilla.getNPCs() != null && !casilla.getNPCs().isEmpty() ||  // Añadir un * a las casillas con npcs u objetos
                         casilla.getObjetos() != null && !casilla.getObjetos().isEmpty()) {
                              System.out.print("*");
                         }
