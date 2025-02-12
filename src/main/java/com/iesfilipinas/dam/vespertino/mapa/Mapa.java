@@ -122,7 +122,7 @@ public class Mapa {
              }
              case "interactuar", "e" -> {
                  Casilla casilla = obtenerOCrearCasilla(jugador.getX(), jugador.getY(), jugador.getZ());
-                 mostrarInteractuables(casilla);
+                 mostrarInteractuablesEInteractuar(casilla);
 
              }
         }
@@ -208,12 +208,13 @@ public class Mapa {
         return true;
     }
 
-    private void mostrarInteractuables(Casilla casilla) {
+    private void mostrarInteractuablesEInteractuar(Casilla casilla) {
         if ((casilla.getNPCs() == null || casilla.getNPCs().isEmpty()) && (casilla.getObjetos() == null || casilla.getObjetos().isEmpty())) {
             System.out.println("No hay nada ni nadie con lo que interactuar.");
             return;
         }
 
+        // Mostrar los interactuables
         System.out.println("¿Con qué quieres interactuar?");
         if (casilla.getNPCs() != null && !casilla.getNPCs().isEmpty()) {
             for (Npc npc : casilla.getNPCs()) {
@@ -226,8 +227,23 @@ public class Mapa {
             }
         }
 
+        // Pedir con qué interactuar y llamar al método de interactuar de dicho objeto o npc
         String input = scan.nextLine().toLowerCase();
-        // Implementar que ejecute el método interactuar() pertinente
+      
+        for (Npc npc : casilla.getNPCs()) {
+            if (npc.getNombre().toLowerCase().equals(input)) {
+                npc.interactuar(jugador);
+                return;
+            }
+        }
+
+        for (Objeto objeto : casilla.getObjetos()) {
+            if (objeto.getNombre().toLowerCase().equals(input)) {
+                objeto.interactuar(jugador);
+                return;
+            }
+        }
+
     }
 
 }

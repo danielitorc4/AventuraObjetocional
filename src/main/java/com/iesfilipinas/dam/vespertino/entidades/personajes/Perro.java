@@ -11,7 +11,7 @@ public class Perro extends Npc{
     }
 
     public void interactuar(Jugador jugador) {
-        // Hay que implementarlo
+        hablar();
     }
 
 
