@@ -1,5 +1,6 @@
 package com.iesfilipinas.dam.vespertino.entidades.personajes;
 
+
 public class Perro extends Npc{
 
     public Perro(int x, int y, int z) {
@@ -10,6 +11,7 @@ public class Perro extends Npc{
         System.out.println("Woof!");
     }
 
+    @Override
     public void interactuar(Jugador jugador) {
         hablar();
     }

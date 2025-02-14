@@ -17,6 +17,11 @@ public abstract class Objeto implements Interactuable {
         this.z = z;
     }
 
+    public Objeto(String nombre, TipoObjeto tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+
     public abstract void interactuar(Jugador jugador);
 
     // Getters y setters
