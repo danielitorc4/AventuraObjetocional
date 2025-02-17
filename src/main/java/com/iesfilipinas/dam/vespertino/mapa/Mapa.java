@@ -199,9 +199,9 @@ public class Mapa {
             return false;
         }
         if (newCasilla.getTerreno().equals(TiposDeTerreno.CASA)) { // Casilla de casa
-            jugador.quitarVida(1);;
+            jugador.quitarVida(1);
             System.out.println("¡Ouch! Te has chocado con una pared.");
-            System.out.println("Vida restante: " + jugador.getVida());
+            jugador.mostrarVida();
             return false;
         }
         // Añadir otro if para el agua con y sin lancha

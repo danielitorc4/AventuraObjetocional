@@ -33,7 +33,7 @@ public class Juego {
         this.jugando = true;
         System.out.println("¡Bienvenido a " + this.nombre + "!");
         System.out.println("¿Cuál es tu nombre?");
-        String nombreJugador = System.console().readLine();
+        String nombreJugador = scan.nextLine();
 
         Jugador jugador = new Jugador(5, 5, 1, nombreJugador);
         Mapa mapa = new Mapa(jugador, scan);
@@ -50,13 +50,19 @@ public class Juego {
             System.out.println("\n¿Qué vas a hacer?");
             mostrarMenuOpciones();
             String movimiento = scan.nextLine().toLowerCase();
-    
+            System.out.println();
+
             mapa.realizarAccionOMovimiento(jugador, movimiento);
     
             // Comprobaciones para terminar el juego
             if (movimiento.equalsIgnoreCase("salir")) {
                 terminarJuego();
                 System.out.println("Juego terminado.");
+            }
+
+            if (jugador.getVida() <= 0) {
+                terminarJuego();
+                System.out.println("Has muerto.");
             }
         }
     }

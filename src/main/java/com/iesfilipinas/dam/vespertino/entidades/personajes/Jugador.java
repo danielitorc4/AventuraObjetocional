@@ -21,6 +21,11 @@ public class Jugador extends Persona {
 
     public void quitarVida(int cantidad) {
         this.vida -= cantidad;
+        actualizarVivo();
+    }
+
+    public void mostrarVida() {
+        System.out.println("Vida restante: " + vida);
     }
     
     // Getters y Setters
@@ -34,6 +39,7 @@ public class Jugador extends Persona {
         if (vida > 100) {
             this.vida = 100;
         }
+        mostrarVida();
         actualizarVivo();
     }
 
