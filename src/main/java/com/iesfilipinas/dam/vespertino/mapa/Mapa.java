@@ -7,8 +7,9 @@ import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Npc;
 
 public class Mapa {
-    private static final int mapaMaxX = 11; // Ancho 
-    private static final int mapaMaxY = 9; // Alto 
+    // Los ejes están pensados para funcionar con un array
+    private static final int mapaMaxX = 9; // Alto
+    private static final int mapaMaxY = 11; // Ancho
     private static final int mapaMaxZ = 4; // Profundidad 
 
     private Jugador jugador;

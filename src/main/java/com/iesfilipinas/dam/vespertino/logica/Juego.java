@@ -1,5 +1,7 @@
 package com.iesfilipinas.dam.vespertino.logica;
 
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Llave;
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Puerta;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Perro;
 import com.iesfilipinas.dam.vespertino.mapa.Mapa;
@@ -76,13 +78,20 @@ public class Juego {
     }
 
     private void inicializarNpcs(Mapa mapa) {
+        // Colocar npcs
         Perro perro = new Perro(random(2, 3), random(0, 1), 1);
         mapa.colocarNPC(perro.getX(), perro.getY(), perro.getZ(), perro); // Ajustar ambas coordenadas
-        // Colocar npcs
     }
 
     private void inicializarObjetos(Mapa mapa) {
+        Llave llaveEntrada = new Llave(5, random(0,1), 1);
+        mapa.colocarObjeto(llaveEntrada.getX(), llaveEntrada.getY(), llaveEntrada.getZ(), llaveEntrada);
 
+        Puerta puertaEntradaExterior = new Puerta(1, 5, 1);
+        mapa.colocarObjeto(puertaEntradaExterior.getX(), puertaEntradaExterior.getY(), puertaEntradaExterior.getZ(), puertaEntradaExterior);
+
+        Puerta puertaEntradaInterior = new Puerta(1, 5, 2);
+        mapa.colocarObjeto(puertaEntradaInterior.getX(), puertaEntradaInterior.getY(), puertaEntradaInterior.getZ(), puertaEntradaInterior);
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)

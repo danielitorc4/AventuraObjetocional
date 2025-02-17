@@ -1,19 +1,16 @@
 package com.iesfilipinas.dam.vespertino.entidades.personajes;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import com.iesfilipinas.dam.vespertino.entidades.objetos.Objeto;
 
 public class Jugador extends Persona {
  
     private int vida;
-    private List<Objeto> inventario;
+    private Inventario inventario;
 
     public Jugador(int x, int y, int z, String nombre) { // Añadir inventario (objeto, clase Inventario)
         super(x, y, z, nombre);
         this.vida = 100;
-        this.inventario = new ArrayList<Objeto>();
+        this.inventario = new Inventario(new ArrayList<>());
     }
 
     private void actualizarVivo() {
@@ -24,21 +21,6 @@ public class Jugador extends Persona {
 
     public void quitarVida(int cantidad) {
         this.vida -= cantidad;
-    }
-
-    public void mostrarInventario() {
-        int n = 1;
-        for (Objeto objeto : inventario) {
-            System.out.println(n++ + ". " + objeto.getNombre());
-        }
-    }
-
-    public void agregarObjetoInventario(Objeto objeto) {
-        inventario.add(objeto);
-    }
-
-    public void eliminarObjetoIventario(Objeto objeto) {
-        inventario.remove(objeto);
     }
     
     // Getters y Setters
@@ -55,7 +37,7 @@ public class Jugador extends Persona {
         actualizarVivo();
     }
 
-    public List<Objeto> getInventario() {
+    public Inventario getInventario() {
         return inventario;
     }
 
