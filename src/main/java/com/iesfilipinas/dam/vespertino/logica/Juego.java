@@ -90,6 +90,7 @@ public class Juego {
     }
 
     private void inicializarObjetos(Mapa mapa) {
+        // Colocar objetos
         Llave llaveEntrada = new Llave(5, random(0,1), 1);
         mapa.colocarObjeto(llaveEntrada.getX(), llaveEntrada.getY(), llaveEntrada.getZ(), llaveEntrada);
 
@@ -98,6 +99,9 @@ public class Juego {
 
         Puerta puertaEntradaInterior = new Puerta(1, 5, 2);
         mapa.colocarObjeto(puertaEntradaInterior.getX(), puertaEntradaInterior.getY(), puertaEntradaInterior.getZ(), puertaEntradaInterior);
+   
+        
+
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)
