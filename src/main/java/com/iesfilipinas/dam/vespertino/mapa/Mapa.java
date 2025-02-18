@@ -1,10 +1,9 @@
 package com.iesfilipinas.dam.vespertino.mapa;
 
-import java.util.Scanner;
-
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Objeto;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Npc;
+import com.iesfilipinas.dam.vespertino.logica.InputReader;
 
 public class Mapa {
     // Los ejes están pensados para funcionar con un array
@@ -14,12 +13,10 @@ public class Mapa {
 
     private Jugador jugador;
     private Casilla[][][] terrenos;
-    private Scanner scan;
 
-    public Mapa(Jugador jugador, Scanner scan) {
+    public Mapa(Jugador jugador) {
         this.jugador = jugador;
         this.terrenos = new Casilla[mapaMaxX][mapaMaxY][mapaMaxZ];
-        this.scan = scan;
     }
 
     // Plantilla del mapa
@@ -229,7 +226,7 @@ public class Mapa {
         }
 
         // Pedir con qué interactuar y llamar al método de interactuar de dicho objeto o npc
-        String input = scan.nextLine().toLowerCase();
+        String input = InputReader.leerLineaMinusculas();
       
         for (Npc npc : casilla.getNPCs()) {
             if (npc.getNombre().toLowerCase().equals(input)) {

@@ -1,5 +1,6 @@
 package com.iesfilipinas.dam.vespertino.logica;
 
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Estanteria;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Llave;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Puerta;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
@@ -7,7 +8,6 @@ import com.iesfilipinas.dam.vespertino.entidades.personajes.Perro;
 import com.iesfilipinas.dam.vespertino.mapa.Mapa;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Juego {
     
@@ -15,12 +15,10 @@ public class Juego {
     private boolean jugando;
 
     private static Random random = new Random(); 
-    private Scanner scan;
 
     public Juego (String nombre) {
         this.nombre = nombre;
         this.jugando = false;
-        this.scan = new Scanner(System.in);
     }
 
     // Getters y setters
@@ -33,10 +31,10 @@ public class Juego {
         this.jugando = true;
         System.out.println("¡Bienvenido a " + this.nombre + "!");
         System.out.println("¿Cuál es tu nombre?");
-        String nombreJugador = scan.nextLine();
+        String nombreJugador = InputReader.leerLineaMinusculas();
 
         Jugador jugador = new Jugador(5, 5, 1, nombreJugador);
-        Mapa mapa = new Mapa(jugador, scan);
+        Mapa mapa = new Mapa(jugador);
         inicializarNpcs(mapa);
         inicializarObjetos(mapa);
 
@@ -49,7 +47,7 @@ public class Juego {
             mapa.cargarCasillasVisibles();
             System.out.println("\n¿Qué vas a hacer?");
             mostrarMenuOpciones();
-            String movimiento = scan.nextLine().toLowerCase();
+            String movimiento = InputReader.leerLineaMinusculas();
             System.out.println();
 
             mapa.realizarAccionOMovimiento(jugador, movimiento);
@@ -69,7 +67,7 @@ public class Juego {
 
     private void terminarJuego() {
         this.jugando = false;
-        scan.close();
+        InputReader.leerLineaMinusculas();
     }
 
     private void mostrarMenuOpciones() {
@@ -91,8 +89,11 @@ public class Juego {
 
     private void inicializarObjetos(Mapa mapa) {
         // Colocar objetos
-        Llave llaveEntrada = new Llave(5, random(0,1), 1);
-        mapa.colocarObjeto(llaveEntrada.getX(), llaveEntrada.getY(), llaveEntrada.getZ(), llaveEntrada);
+        Estanteria estanteriaCobertizo = new Estanteria(5, random(0,1), 1);
+        mapa.colocarObjeto(estanteriaCobertizo.getX(), estanteriaCobertizo.getY(), estanteriaCobertizo.getZ(), estanteriaCobertizo);
+
+            Llave llave = new Llave();
+            estanteriaCobertizo.getInventario().agregarObjeto(llave);
 
         Puerta puertaEntradaExterior = new Puerta(1, 5, 1);
         mapa.colocarObjeto(puertaEntradaExterior.getX(), puertaEntradaExterior.getY(), puertaEntradaExterior.getZ(), puertaEntradaExterior);
