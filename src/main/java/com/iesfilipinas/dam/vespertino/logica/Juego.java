@@ -3,6 +3,7 @@ package com.iesfilipinas.dam.vespertino.logica;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Estanteria;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Llave;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Puerta;
+import com.iesfilipinas.dam.vespertino.entidades.personajes.Hijo;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Perro;
 import com.iesfilipinas.dam.vespertino.mapa.Mapa;
@@ -85,6 +86,9 @@ public class Juego {
         // Colocar npcs
         Perro perro = new Perro(random(2, 3), random(0, 1), 1);
         mapa.colocarNPC(perro.getX(), perro.getY(), perro.getZ(), perro); // Ajustar ambas coordenadas
+
+         Hijo hijo = new Hijo("Chaval", random(6, 8), random(5, 11), 2);
+        mapa.colocarNPC(hijo.getX(), hijo.getY(), hijo.getZ(), hijo);
     }
 
     private void inicializarObjetos(Mapa mapa) {
