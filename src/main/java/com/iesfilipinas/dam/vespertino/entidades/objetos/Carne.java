@@ -9,6 +9,11 @@ public class Carne extends Objeto {
         this.setNombre("Carne");
     }
 
+    public Carne() {
+        super("Carne", TipoObjeto.CARNE);
+    }
+
+
     @Override
     public void interactuar(Jugador jugador) {
         jugador.getInventario().agregarObjeto(this);
