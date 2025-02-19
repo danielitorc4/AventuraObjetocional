@@ -18,6 +18,7 @@ public class Puerta extends Objeto {
         if(jugador.getZ() == 1) {
             if(!abierta && abrirPuerta(jugador)) {
                 System.out.println("Has abierto la puerta");
+                jugador.setZ(2); // Entrar en cuanto la abres. QoL
             } else {
                 jugador.setZ(2);
                 return;
@@ -30,6 +31,16 @@ public class Puerta extends Objeto {
     }
 
     private boolean abrirPuerta(Jugador jugador) {
+        Objeto llave = jugador.getInventario().getObjetoInventario("Llave"); // Busco un objeto cuyo nombre sea llave
+        if (llave != null) { // Si hay alguno
+            jugador.getInventario().eliminarObjeto(llave); // Lo elimino y abro la puerta
+            abierta = true;
+            return true;
+        } else {
+            return false;}
+    }
+/* 
+    private boolean abrirPuerta(Jugador jugador) {
     Inventario inventario = jugador.getInventario();
     for (Objeto objeto : inventario.getObjetos()) {
         if (objeto instanceof Llave) {
@@ -40,6 +51,6 @@ public class Puerta extends Objeto {
     }
     return false;
   }
-
+  */
 
 }

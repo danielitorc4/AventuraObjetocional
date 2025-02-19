@@ -56,8 +56,7 @@ public class TresEnRaya extends Minijuego {
                 ContenedorDeBooleanos.cambiarEstadoBooleano("tresEnRayaGanado", true);
                 activo = false;
             }
-            
-
+          
          // Turno del NPC
             Random random = new Random();
 

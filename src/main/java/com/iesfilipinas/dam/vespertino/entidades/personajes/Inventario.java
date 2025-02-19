@@ -28,17 +28,14 @@ public class Inventario {
         }
     }
 
-    public boolean contieneObjeto(Objeto objeto) {
-        return objetos.contains(objeto);
-    }
-
-    public Objeto getObjetoInventario (Objeto objeto) {
-        int index = objetos.indexOf(objeto);
-        if (index == -1) {
-            System.out.println("El objeto no se encuentra en el inventario.");
-            return null;
+    public Objeto getObjetoInventario(String nombre) {
+        for (Objeto objeto : objetos) {
+            if (objeto.getNombre().equalsIgnoreCase(nombre)) {
+                return objeto;
+            }
         }
-        return objetos.get(objetos.indexOf(objeto));
+        System.out.println("El objeto '" + nombre + "' no se encuentra.");
+        return null;
     }
 
     public Objeto[] getObjetos() {

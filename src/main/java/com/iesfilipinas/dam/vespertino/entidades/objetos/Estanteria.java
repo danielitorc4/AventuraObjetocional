@@ -18,8 +18,30 @@ public class Estanteria extends Objeto {
     @Override
     public void interactuar(Jugador jugador) {
         mostrarContenido(jugador);
+        String nombre = InputReader.leerLineaMinusculas();
+        Objeto objeto = inventario.getObjetoInventario(nombre); // Busco por el nombre el objeto
+
+        if(objeto != null) { // Si está en el inventario
+           jugador.getInventario().agregarObjeto(objeto); // Se agrega al inventario del jugador
+           inventario.eliminarObjeto(objeto); // Se elimina de la estanteria
+           System.out.println("Has recogido: " + objeto.getNombre());
+
+        } else {
+            System.out.println("Ese objeto no está en la estantería");
+        }
     }
 
+    private void mostrarContenido(Jugador jugador) {
+        if (inventario.getObjetos().length > 0) {
+            System.out.println("\n¿Qué objeto quieres coger?");
+            inventario.mostrarInventario();
+           
+        } else {
+            System.out.println("No hay nada en la estantería");
+        }
+    }
+
+/* 
     private void mostrarContenido(Jugador jugador) {
         if (inventario.getObjetos().length > 0) {
             System.out.println("¿Qué objeto quieres coger?");
@@ -39,7 +61,7 @@ public class Estanteria extends Objeto {
             System.out.println("No hay nada en la estantería");
         }
     }
-    
+    */
     // Getters y Setters
     
     public Inventario getInventario() {
