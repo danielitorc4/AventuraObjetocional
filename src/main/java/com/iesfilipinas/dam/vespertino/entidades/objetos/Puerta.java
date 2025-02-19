@@ -18,6 +18,7 @@ public class Puerta extends Objeto {
             if(!abierta && abrirPuerta(jugador)) {
                 System.out.println("Has abierto la puerta");
                 jugador.setZ(2); // Entrar en cuanto la abres. QoL
+                return;
             } else {
                 jugador.setZ(2);
                 return;
@@ -31,7 +32,7 @@ public class Puerta extends Objeto {
 
     private boolean abrirPuerta(Jugador jugador) {
         Objeto llave = jugador.getInventario().getObjetoInventario("Llave"); // Busco un objeto cuyo nombre sea llave
-        if (llave != null) { // Si hay alguno
+        if (llave != null && llave instanceof Llave) { // Si hay alguno
             jugador.getInventario().eliminarObjeto(llave); // Lo elimino y abro la puerta
             abierta = true;
             return true;

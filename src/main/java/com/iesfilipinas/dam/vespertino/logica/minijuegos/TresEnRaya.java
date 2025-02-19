@@ -18,7 +18,7 @@ public class TresEnRaya extends Minijuego {
     private static final char simboloJugador = 'X';
 
     public TresEnRaya() {
-        super("Tres en Raya");
+        super("TresEnRaya");
     }
 
     @Override

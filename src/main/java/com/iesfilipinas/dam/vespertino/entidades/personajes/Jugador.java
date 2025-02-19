@@ -48,4 +48,8 @@ public class Jugador extends Persona {
         return inventario;
     }
 
+    public boolean getVivo() {
+        return vivo;
+    }
+
 }

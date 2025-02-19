@@ -1,5 +1,6 @@
 package com.iesfilipinas.dam.vespertino.logica;
 
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Congelador;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Estanteria;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Llave;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Puerta;
@@ -46,7 +47,7 @@ public class Juego {
     }
 
     private void bucleJuego(Jugador jugador, Mapa mapa) {
-        while (jugando) {
+        while (jugando && jugador.getVivo()) {
             mapa.cargarCasillasVisibles();
             System.out.println("\n¿Qué vas a hacer?");
             mostrarMenuOpciones();
@@ -61,7 +62,7 @@ public class Juego {
                 System.out.println("Juego terminado.");
             }
 
-            if (jugador.getVida() <= 0) {
+            if (!jugador.getVivo()) {
                 terminarJuego();
                 System.out.println("Has muerto.");
             }
@@ -107,7 +108,8 @@ public class Juego {
         Puerta puertaEntradaInterior = new Puerta(1, 5, 2);
         mapa.colocarObjeto(puertaEntradaInterior.getX(), puertaEntradaInterior.getY(), puertaEntradaInterior.getZ(), puertaEntradaInterior);
    
-        
+        Congelador congelador = new Congelador(random(6, 8), random(0, 3), 2);
+        mapa.colocarObjeto(congelador.getX(), congelador.getY(), congelador.getZ(), congelador);
 
     }
 

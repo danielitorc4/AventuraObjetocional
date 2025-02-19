@@ -11,7 +11,7 @@ public class Estanteria extends Objeto {
     private Inventario inventario;
 
     public Estanteria(int x, int y, int z) {
-        super("Estanteria",TipoObjeto.ARMARIO, x, y, z);
+        super("Estanteria", TipoObjeto.ARMARIO, x, y, z);
         this.inventario = new Inventario(new ArrayList<>());
     }
 

@@ -9,6 +9,7 @@ public class ContenedorDeBooleanos {
 
     public static void inicializarBooleanos() {
         claves.add("tresEnRayaGanado");
+        claves.add("acertijoCongeladorResuelto");
         // Añadir el resto
         for (int i = 0; i < claves.size(); i++) { // Por cada clave crea un valor y lo pone en falso
             valores.add(false);
