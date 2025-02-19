@@ -38,6 +38,8 @@ public class Juego {
         Mapa mapa = new Mapa(jugador);
         inicializarNpcs(mapa);
         inicializarObjetos(mapa);
+        GestorDeDialogos.inicializarDialogos();
+        GestorDeDialogos.getDialogo(1);
 
         bucleJuego(jugador, mapa);
  

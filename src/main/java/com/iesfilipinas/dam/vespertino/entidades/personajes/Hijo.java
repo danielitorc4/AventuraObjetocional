@@ -16,7 +16,8 @@ public class Hijo extends Npc{
 
     public void interactuar(Jugador jugador) {
         if(!ContenedorDeBooleanos.getEstadoBooleano("tresEnRayaGanado")) {
-            System.out.println("¡Vamos a jugar!");
+            System.out.println("Ves un par de cuchillos tirados por el suelo y unas marcas como de tres en raya en las tablas\n"
+                                + "Decides jugar a ver si llamas la atención del chico\n");
             TresEnRaya tresEnRaya = new TresEnRaya();
             tresEnRaya.inicializarMinijuego(jugador);
         }
