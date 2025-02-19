@@ -39,7 +39,7 @@ public class Juego {
         inicializarNpcs(mapa);
         inicializarObjetos(mapa);
         GestorDeDialogos.inicializarDialogos();
-        GestorDeDialogos.getDialogo(1);
+        System.out.println(GestorDeDialogos.getDialogo("inicioJuego"));
 
         bucleJuego(jugador, mapa);
  
@@ -89,7 +89,7 @@ public class Juego {
         Perro perro = new Perro(random(2, 3), random(0, 1), 1);
         mapa.colocarNPC(perro.getX(), perro.getY(), perro.getZ(), perro); // Ajustar ambas coordenadas
 
-         Hijo hijo = new Hijo("Chaval", random(6, 8), random(5, 11), 2);
+         Hijo hijo = new Hijo("Chaval", random(6, 8), random(5, 10), 2);
         mapa.colocarNPC(hijo.getX(), hijo.getY(), hijo.getZ(), hijo);
     }
 

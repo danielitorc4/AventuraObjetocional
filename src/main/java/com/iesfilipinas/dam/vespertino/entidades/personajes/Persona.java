@@ -16,8 +16,6 @@ public abstract class Persona {
         this.vivo = true;
     }
 
-    public void interactuar(Jugador jugador) {}
-
     // Getters y setters
 
     public int getX() {

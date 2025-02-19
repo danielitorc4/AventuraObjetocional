@@ -10,7 +10,9 @@ public class InputReader {
     }
 
     public static int leerEntero() {
-        return scan.nextInt();
+        int entero = scan.nextInt(); // Creo la variable entero en lugar de retornarlo directamente para poder limpiar el buffer
+        scan.nextLine(); // Limpiar buffer
+        return entero;
     }
     
 }

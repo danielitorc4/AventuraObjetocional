@@ -4,28 +4,32 @@ import java.util.ArrayList;
 
 public class GestorDeDialogos {
 
-    private static ArrayList<String> dialogos = new ArrayList<String>();
+    private static ArrayList<String> nombresDialogos = new ArrayList<>();
+    private static ArrayList<String> textosDialogos = new ArrayList<>();
+
 
     public static void inicializarDialogos() {
-        String jugadorGanaTresEnRaya = " \\n" + 
-                        "\nNiño: Me gustaría poder volver a mi habitación... pero mamá está muy enfadada y no me atrevo a subir..."
-                        + "\nTiene que haber alguna forma de llamar su atención, algún ruido o algo.";
+        nombresDialogos.add("jugadorGanaTresEnRaya");
+        textosDialogos.add("\nNiño: Me gustaría poder volver a mi habitación... pero mamá está muy enfadada y no me atrevo a subir..."
+                + "\nTiene que haber alguna forma de llamar su atención, algún ruido o algo.");
 
-        String jugadorPierdeTresEnRaya = "Niño: Nunca consigues ganarme.";
+        nombresDialogos.add("jugadorPierdeTresEnRaya");
+        textosDialogos.add("Niño: Nunca consigues ganarme.");
 
-        String jugadorEmpataTresEnRaya = "El niño se queda en silencio.";
+        nombresDialogos.add("jugadorEmpataTresEnRaya");
+        textosDialogos.add("El niño se queda en silencio.");
+
+        nombresDialogos.add("inicioJuego");
+        textosDialogos.add("Te despiertas desconcertado..."); // Terminar este diálogo
+    
     }
 
     public static String getDialogo(String dialogo) {
-        if (!dialogos.contains(dialogo)) {
+        int indice = nombresDialogos.indexOf(dialogo);
+        if (indice != -1) {
+            return textosDialogos.get(indice);
+        } else {
             return "El diálogo no existe";
         }
-
-        int indice = getIndexDialogo(dialogo);
-        return dialogos.get(indice);
-    }
-
-    public static int getIndexDialogo(String dialogo) {
-        return dialogos.indexOf(dialogo);
     }
 }

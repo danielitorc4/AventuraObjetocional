@@ -28,16 +28,21 @@ public class TresEnRaya extends Minijuego {
         while (activo) {
             imprimirTablero();
             System.out.print("Elige una posición (1-9): ");
-            int posicion = InputReader.leerEntero();
-            int fila = (posicion - 1) / 3;		// Calculo la posición de la i en la matriz
-            int columna = (posicion - 1) % 3;   // Calculo la posición de la j en la matriz
+            int posicion;
+            int fila;		// Calculo la posición de la i en la matriz
+            int columna;   // Calculo la posición de la j en la matriz
             boolean movimientoValido = false;
             
             do { 	// Bucle hasta que se realice un movimiento válido
+                System.out.print("Elige una posición (1-9): ");
+                posicion = InputReader.leerEntero();
+                fila = (posicion - 1) / 3;
+                columna = (posicion - 1) % 3;
+
             	if (tablero[fila][columna] != 'X' && tablero[fila][columna] != 'O') {
-            		
             		tablero[fila][columna] = simboloJugador; 	// Marcar la casilla con 'X'
             		movimientoValido = true;
+                    continue;
             	} else {
             		System.out.println("Movimiento inválido, intenta de nuevo.");
             		movimientoValido = false;
@@ -46,8 +51,8 @@ public class TresEnRaya extends Minijuego {
 
             // Comprobar si el jugador ha ganado
             if (comprobarGanador(simboloJugador)) {
-                System.out.println("¡Has ganado!");
-                GestorDeDialogos.getDialogo("jugadorGanaTresEnRaya");
+                System.out.println("¡Has ganado!\n");
+                System.out.println(GestorDeDialogos.getDialogo("jugadorGanaTresEnRaya")); 
                 ContenedorDeBooleanos.cambiarEstadoBooleano("tresEnRayaGanado", true);
                 activo = false;
             }
@@ -66,15 +71,15 @@ public class TresEnRaya extends Minijuego {
             
             // Comprobamos si el NPC ha ganado
             if (comprobarGanador('O')) {    
-                System.out.println("¡El chico ha ganado!");
-                GestorDeDialogos.getDialogo("jugadorPierdeTresEnRaya");
+                System.out.println("¡El chico ha ganado!\n");
+                System.out.println(GestorDeDialogos.getDialogo("jugadorPierdeTresEnRaya"));
                 activo = false;
             } 
 
             if (tableroLleno() && activo) {
                 imprimirTablero();
-                System.out.println("¡Es un empate!");
-                GestorDeDialogos.getDialogo("jugadorEmpataTresEnRaya");
+                System.out.println("¡Es un empate!\n");
+                System.out.println(GestorDeDialogos.getDialogo("jugadorEmpataTresEnRaya"));
                 activo = false;
             }
         }        
