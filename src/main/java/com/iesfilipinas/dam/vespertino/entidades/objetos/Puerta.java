@@ -1,6 +1,5 @@
 package com.iesfilipinas.dam.vespertino.entidades.objetos;
 
-import com.iesfilipinas.dam.vespertino.entidades.personajes.Inventario;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 
 public class Puerta extends Objeto {

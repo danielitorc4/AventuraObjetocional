@@ -21,6 +21,7 @@ public class Jugador extends Persona {
 
     public void quitarVida(int cantidad) {
         this.vida -= cantidad;
+        mostrarVida();
         actualizarVivo();
     }
 
