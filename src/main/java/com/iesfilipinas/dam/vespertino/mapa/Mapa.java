@@ -68,30 +68,38 @@ public class Mapa {
     };
 
     // Cargar la casilla del jugador y las que la rodean en el mismo piso (Lazy Initialization) (Un 3x3)
-    public void cargarCasillasVisibles() {
+    public void cargarCasillasVisibles() { 
         System.out.println("\nCasillas visibles:");
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 int nx = jugador.getX() + i;
                 int ny = jugador.getY() + j;
                 if (nx >= 0 && ny >= 0 && nx < mapaMaxX && ny < mapaMaxY) {
-                    if (nx == jugador.getX() && ny == jugador.getY()) { // Carga el jugador
-                        System.out.print(" (jugador) ");
-                    } else {
-                        Casilla casilla = obtenerOCrearCasilla(nx, ny, jugador.getZ());
-                        System.out.print("[" + nx + "," + ny + "," + jugador.getZ() + "] ");
-                        System.out.print(casilla.getTerreno());
-                        if (casilla.getNPCs() != null && !casilla.getNPCs().isEmpty() ||  // Añadir un * a las casillas con npcs u objetos
-                        casilla.getObjetos() != null && !casilla.getObjetos().isEmpty()) {
-                             System.out.print("*");
-                        }
-                        System.out.print(" ");
-                    }
+                    System.out.print(formatearCasilla(nx, ny));
                 }
             }
             System.out.println();
         }
     }
+
+    private String formatearCasilla(int nx, int ny) {
+        if (nx == jugador.getX() && ny == jugador.getY()) {
+            // Representar al jugador
+            return String.format("%-20s", "(jugador)");
+        } else {
+            Casilla casilla = obtenerOCrearCasilla(nx, ny, jugador.getZ());
+            StringBuilder contenido = new StringBuilder();
+            contenido.append("[").append(nx).append(",").append(ny).append(",").append(jugador.getZ()).append("] ");
+            contenido.append(casilla.getTerreno());
+            if (casilla.getNPCs() != null && !casilla.getNPCs().isEmpty() ||  // Añadir un * a las casillas con NPCs u objetos
+                casilla.getObjetos() != null && !casilla.getObjetos().isEmpty()) {
+                contenido.append("*");
+            }
+            return String.format("%-20s", contenido.toString());
+        }
+    }
+
+
     public void realizarAccionOMovimiento(Jugador jugador, String input) {
         switch (input) {
             case "arriba","w" -> {
