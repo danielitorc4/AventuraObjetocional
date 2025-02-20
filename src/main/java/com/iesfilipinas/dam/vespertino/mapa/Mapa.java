@@ -201,6 +201,10 @@ public class Mapa {
             jugador.mostrarVida();
             return false;
         }
+        if (newCasilla.getTerreno().equals(TiposDeTerreno.AGUA)) { // Casilla de agua
+            System.out.println("No puedes meterte en el agua.");
+            return false;
+        }
         // Añadir otro if para el agua con y sin lancha
         
         return true;

@@ -118,14 +118,20 @@ public class Juego {
         Congelador congelador = new Congelador(random(6, 8), random(0, 3), 2);
         mapa.colocarObjeto(congelador.getX(), congelador.getY(), congelador.getZ(), congelador);
 
-        Escalera escaleraPB = new Escalera(random(1, 2), 10, 2);
+        Escalera escaleraPB = new Escalera(1, 10, 2);
+        Escalera escaleraPB_2 = new Escalera(2, 10, 2);
         mapa.colocarObjeto(escaleraPB.getX(), escaleraPB.getY(), escaleraPB.getZ(), escaleraPB);
+        mapa.colocarObjeto(escaleraPB_2.getX(), escaleraPB_2.getY(), escaleraPB_2.getZ(), escaleraPB_2);
 
-        Escalera escaleraP1 = new Escalera(random(1, 2), 10, 3);
+        Escalera escaleraP1 = new Escalera(1, 10, 3);
+        Escalera escaleraP1_2 = new Escalera(2, 10, 3);
         mapa.colocarObjeto(escaleraP1.getX(), escaleraP1.getY(), escaleraP1.getZ(), escaleraP1);
+        mapa.colocarObjeto(escaleraP1_2.getX(), escaleraP1_2.getY(), escaleraP1_2.getZ(), escaleraP1_2);
 
-        Escalera escaleraSotano = new Escalera(random(1, 2), 10, 0);
+        Escalera escaleraSotano = new Escalera(1, 10, 0);
+        Escalera escaleparSotano_2 = new Escalera(2, 10, 0);
         mapa.colocarObjeto(escaleraSotano.getX(), escaleraSotano.getY(), escaleraSotano.getZ(), escaleraSotano);
+        mapa.colocarObjeto(escaleparSotano_2.getX(), escaleparSotano_2.getY(), escaleparSotano_2.getZ(), escaleparSotano_2);
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)

@@ -59,7 +59,6 @@ public class TresEnRaya extends Minijuego {
                 System.out.println("¡Has ganado!\n");
                 ContenedorDeBooleanos.cambiarEstadoBooleano("tresEnRayaGanado", true);
                 activo = false;
-             
             }
 
             if (tableroLleno() && activo) {
