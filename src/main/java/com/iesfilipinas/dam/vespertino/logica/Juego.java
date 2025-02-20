@@ -1,6 +1,7 @@
 package com.iesfilipinas.dam.vespertino.logica;
 
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Congelador;
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Escalera;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Estanteria;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Llave;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Puerta;
@@ -37,20 +38,22 @@ public class Juego {
 
         Jugador jugador = new Jugador(5, 5, 1, nombreJugador);
         Mapa mapa = new Mapa(jugador);
-        inicializarNpcs(mapa);
-        inicializarObjetos(mapa);
-        GestorDeDialogos.inicializarDialogos();
-        ContenedorDeBooleanos.inicializarBooleanos();
+        inicializarJuego(mapa);
         System.out.println(GestorDeDialogos.getDialogo("inicioJuego"));
 
         bucleJuego(jugador, mapa);
  
     }
 
-    private void bucleJuego(Jugador jugador, Mapa mapa) {
+    private void inicializarJuego(Mapa mapa) {
+        inicializarNpcs(mapa);
+        inicializarObjetos(mapa);
+        GestorDeDialogos.inicializarDialogos();
+        ContenedorDeBooleanos.inicializarBooleanos();
+    }
 
+    private void bucleJuego(Jugador jugador, Mapa mapa) {
         while (jugando) {
-            
             if (!jugador.getVivo()) {
                 System.out.println("Has muerto.");
                 terminarJuego();
@@ -69,7 +72,7 @@ public class Juego {
                 terminarJuego();
                 System.out.println("Juego terminado.");
             }
-       
+    
         }
     }
 
@@ -115,6 +118,14 @@ public class Juego {
         Congelador congelador = new Congelador(random(6, 8), random(0, 3), 2);
         mapa.colocarObjeto(congelador.getX(), congelador.getY(), congelador.getZ(), congelador);
 
+        Escalera escaleraPB = new Escalera(random(1, 2), 10, 2);
+        mapa.colocarObjeto(escaleraPB.getX(), escaleraPB.getY(), escaleraPB.getZ(), escaleraPB);
+
+        Escalera escaleraP1 = new Escalera(random(1, 2), 10, 3);
+        mapa.colocarObjeto(escaleraP1.getX(), escaleraP1.getY(), escaleraP1.getZ(), escaleraP1);
+
+        Escalera escaleraSotano = new Escalera(random(1, 2), 10, 0);
+        mapa.colocarObjeto(escaleraSotano.getX(), escaleraSotano.getY(), escaleraSotano.getZ(), escaleraSotano);
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)
