@@ -89,6 +89,7 @@ public class Mapa {
         } else {
             Casilla casilla = obtenerOCrearCasilla(nx, ny, jugador.getZ());
             StringBuilder contenido = new StringBuilder();
+            // append es para concatenar
             contenido.append("[").append(nx).append(",").append(ny).append(",").append(jugador.getZ()).append("] ");
             contenido.append(casilla.getTerreno());
             if (casilla.getNPCs() != null && !casilla.getNPCs().isEmpty() ||  // Añadir un * a las casillas con NPCs u objetos
@@ -154,7 +155,7 @@ public class Mapa {
             // Sótano
             case "S": return TiposDeTerreno.SOTANO;
             // Exterior
-            case "CP": return TiposDeTerreno.CASETAPERRO;
+            case "CP": return TiposDeTerreno.CASETA;
             case "J": return TiposDeTerreno.JARDIN;
             case "CO": return TiposDeTerreno.COBERTIZO;
             case "CN": return TiposDeTerreno.CONTINENTE;
@@ -166,10 +167,10 @@ public class Mapa {
             case "CM": return TiposDeTerreno.COMEDOR;
             // Piso 1
             case "H": return TiposDeTerreno.HABITACION; 
-            case "CD": return TiposDeTerreno.SALACUADRO;
+            case "CD": return TiposDeTerreno.MUSEO;
             case "PA": return TiposDeTerreno.PASILLO;
-            case "HN": return TiposDeTerreno.HABITACIONNINO;
-            case "HP": return TiposDeTerreno.HABITACIONPADRE;
+            case "HN": return TiposDeTerreno.DORMITORIO_INFANTIL;
+            case "HP": return TiposDeTerreno.DORMITORIO;
             // Desconocido
             default: return TiposDeTerreno.DESCONOCIDO;
         }
