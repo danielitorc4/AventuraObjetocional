@@ -19,9 +19,11 @@ public class Puerta extends Objeto {
                 System.out.println("Has abierto la puerta");
                 jugador.setZ(2); // Entrar en cuanto la abres. QoL
                 return;
-            } else {
+            } else if (abierta) {
                 jugador.setZ(2);
                 return;
+            } else {
+                System.out.println("La puerta esta cerrada.");
             }
         }
         // Interior

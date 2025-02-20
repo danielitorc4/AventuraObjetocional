@@ -34,7 +34,6 @@ public class Inventario {
                 return objeto;
             }
         }
-        System.out.println("El objeto '" + nombre + "' no se encuentra.");
         return null;
     }
 
