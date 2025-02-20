@@ -9,7 +9,7 @@ import com.iesfilipinas.dam.vespertino.logica.InputReader;
 
 public class TresEnRaya extends Minijuego {
 
-    private static final char[][] tablero = {
+    private final char[][] tablero = {
         {'1', '2', '3'},
         {'4', '5', '6'},
         {'7', '8', '9'}
@@ -36,13 +36,18 @@ public class TresEnRaya extends Minijuego {
             do { 	// Bucle hasta que se realice un movimiento válido
                 System.out.print("Elige una posición (1-9): ");
                 posicion = InputReader.leerEntero();
+
+                if (posicion < 1 || posicion > 9) {
+                    System.out.println("Posición inválida. Elige un número entre 1 y 9.");
+                    continue; // Pedir otra entrada
+                }
+
                 fila = (posicion - 1) / 3;
                 columna = (posicion - 1) % 3;
 
             	if (tablero[fila][columna] != 'X' && tablero[fila][columna] != 'O') {
             		tablero[fila][columna] = simboloJugador; 	// Marcar la casilla con 'X'
             		movimientoValido = true;
-                    continue;
             	} else {
             		System.out.println("Movimiento inválido, intenta de nuevo.");
             		movimientoValido = false;
@@ -52,9 +57,16 @@ public class TresEnRaya extends Minijuego {
             // Comprobar si el jugador ha ganado
             if (comprobarGanador(simboloJugador)) {
                 System.out.println("¡Has ganado!\n");
-                System.out.println(GestorDeDialogos.getDialogo("jugadorGanaTresEnRaya")); 
                 ContenedorDeBooleanos.cambiarEstadoBooleano("tresEnRayaGanado", true);
                 activo = false;
+             
+            }
+
+            if (tableroLleno() && activo) {
+                imprimirTablero();
+                System.out.println("¡Es un empate!\n");
+                activo = false;
+                return; // Evitar que empiece el turno del NPC, evitando un bucle infinito
             }
           
          // Turno del NPC
@@ -78,7 +90,6 @@ public class TresEnRaya extends Minijuego {
             if (tableroLleno() && activo) {
                 imprimirTablero();
                 System.out.println("¡Es un empate!\n");
-                System.out.println(GestorDeDialogos.getDialogo("jugadorEmpataTresEnRaya"));
                 activo = false;
             }
         }        

@@ -40,6 +40,7 @@ public class Juego {
         inicializarNpcs(mapa);
         inicializarObjetos(mapa);
         GestorDeDialogos.inicializarDialogos();
+        ContenedorDeBooleanos.inicializarBooleanos();
         System.out.println(GestorDeDialogos.getDialogo("inicioJuego"));
 
         bucleJuego(jugador, mapa);
@@ -47,7 +48,14 @@ public class Juego {
     }
 
     private void bucleJuego(Jugador jugador, Mapa mapa) {
-        while (jugando && jugador.getVivo()) {
+
+        while (jugando) {
+            
+            if (!jugador.getVivo()) {
+                System.out.println("Has muerto.");
+                terminarJuego();
+            }
+
             mapa.cargarCasillasVisibles();
             System.out.println("\n¿Qué vas a hacer?");
             mostrarMenuOpciones();
@@ -61,11 +69,7 @@ public class Juego {
                 terminarJuego();
                 System.out.println("Juego terminado.");
             }
-
-            if (!jugador.getVivo()) {
-                terminarJuego();
-                System.out.println("Has muerto.");
-            }
+       
         }
     }
 

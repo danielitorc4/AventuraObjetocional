@@ -20,6 +20,8 @@ public class Hijo extends Npc{
                                 + "Decides jugar a ver si llamas la atención del chico\n");
             TresEnRaya tresEnRaya = new TresEnRaya();
             tresEnRaya.inicializarMinijuego(jugador);
+        } else {
+            System.out.println("El niño te ignora.");
         }
     }
 }

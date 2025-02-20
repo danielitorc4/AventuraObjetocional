@@ -34,8 +34,10 @@ public class Acertijo extends Minijuego{
                 System.out.println("Respuesta incorrecta. Notas cómo los dedos se te congelan con cada intento");
                 numIntentos++;
                 if (numIntentos == 2) {
+		
                     jugador.quitarVida(20);
                     numIntentos = 0;
+				
                 }
 
 		    } while (activo && jugador.getVivo());   // Por algún motivo se está guardando algo en el buffer y al terminar el acertijo me pide escribir algo

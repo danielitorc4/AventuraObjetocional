@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Inventario;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.logica.ContenedorDeBooleanos;
-import com.iesfilipinas.dam.vespertino.logica.InputReader;
 import com.iesfilipinas.dam.vespertino.logica.minijuegos.Acertijo;
 
 public class Congelador extends Objeto {
