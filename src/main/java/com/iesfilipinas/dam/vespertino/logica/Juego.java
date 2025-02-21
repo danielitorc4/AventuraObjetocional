@@ -6,6 +6,7 @@ import com.iesfilipinas.dam.vespertino.entidades.objetos.Escalera;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Estanteria;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Llave;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Puerta;
+import com.iesfilipinas.dam.vespertino.entidades.objetos.TipoObjeto;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Hijo;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Monstruo;
@@ -107,7 +108,8 @@ public class Juego {
          Hijo hijo = new Hijo("Chaval", random(6, 8), random(5, 10), 2);
         mapa.colocarNPC(hijo.getX(), hijo.getY(), hijo.getZ(), hijo);
 
-        Monstruo monstruo = new Monstruo(1, 10, 3, "Monstruo");
+        // Las instancias de los monstruos se utilizan de forma indirecta, el aviso se ignora
+        Monstruo monstruo = new Monstruo(1, 10, 3, "Monstruo");  
         Monstruo monstruoAux = new Monstruo(2, 10, 3, "Monstruo");
 
         // No voy a colocarlos en casillas
@@ -119,7 +121,7 @@ public class Juego {
 
     private void inicializarObjetos(Mapa mapa) {
         // Colocar objetos
-        Estanteria estanteriaCobertizo = new Estanteria(5, random(0,1), 1);
+        Estanteria estanteriaCobertizo = new Estanteria(5, random(0,1), 1, TipoObjeto.ESTANTERIA);
         mapa.colocarObjeto(estanteriaCobertizo.getX(), estanteriaCobertizo.getY(), estanteriaCobertizo.getZ(), estanteriaCobertizo);
 
             Llave llave = new Llave();
@@ -156,6 +158,10 @@ public class Juego {
         Escalera escaleparSotano_2 = new Escalera(2, 10, 0);
         mapa.colocarObjeto(escaleraSotano.getX(), escaleraSotano.getY(), escaleraSotano.getZ(), escaleraSotano);
         mapa.colocarObjeto(escaleparSotano_2.getX(), escaleparSotano_2.getY(), escaleparSotano_2.getZ(), escaleparSotano_2);
+
+        Estanteria mesitaPB = new Estanteria(1, random(0, 1), random(1, 4), TipoObjeto.MESITA);
+            
+            mesitaPB.getInventario().agregarObjeto(mesitaPB)
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)

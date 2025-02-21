@@ -10,8 +10,8 @@ public class Estanteria extends Objeto {
 
     private Inventario inventario;
 
-    public Estanteria(int x, int y, int z) {
-        super("Estanteria", TipoObjeto.ARMARIO, x, y, z);
+    public Estanteria(int x, int y, int z, TipoObjeto tipo) {
+        super("Estanteria", tipo, x, y, z);
         this.inventario = new Inventario(new ArrayList<>());
     }
 
@@ -21,6 +21,20 @@ public class Estanteria extends Objeto {
             return;
         }
 
+        if (this.tipo == TipoObjeto.ESTANTERIA) {
+            recogerObjeto(jugador);
+            return;
+        }
+
+        if (this.tipo == TipoObjeto.MESITA) {   // Los diferencio por si es un futuro quisiera añadir un puzzle por ejemplo
+            recogerObjeto(jugador);
+            return;
+        }
+
+
+    }
+
+    private void recogerObjeto(Jugador jugador) {
         String nombre = InputReader.leerLineaMinusculas();
         Objeto objeto = inventario.getObjetoInventario(nombre); // Busco por el nombre el objeto
 
@@ -30,7 +44,7 @@ public class Estanteria extends Objeto {
            System.out.println("Has recogido: " + objeto.getNombre());
 
         } else {
-            System.out.println("Ese objeto no está en la estantería");
+            System.out.println("No se encuentra el objeto");
         }
     }
 
@@ -41,7 +55,7 @@ public class Estanteria extends Objeto {
             return true;
            
         } else {
-            System.out.println("No hay nada en la estantería");
+            System.out.println("No hay nada...");
             return false;
         }
     }
