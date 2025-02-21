@@ -1,9 +1,12 @@
 package com.iesfilipinas.dam.vespertino.entidades.objetos;
 
+import com.iesfilipinas.dam.vespertino.entidades.personajes.Inventario;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.logica.InputReader;
 
 public class Escalera extends Objeto {
+
+    private Inventario inventario;
 
     public Escalera(int x, int y, int z) {
         super("Escalera", TipoObjeto.ESCALERA, x, y, z);
@@ -53,14 +56,25 @@ public class Escalera extends Objeto {
     }
 
     private boolean bajarEscalera(Jugador jugador) {
+     
         if (z == 3) {
             jugador.setZ(2); // Del piso 3 pasas al 2
             return true;
         }
-        if (z == 2) {
+
+        Objeto puerta = inventario.getObjetoInventario("Puerta_Sotano");
+        Puerta puerta_sotano = (Puerta) puerta;
+        
+        if (z == 2 && puerta_sotano.isAbierta()) {
             jugador.setZ(0); // Del piso 2 pasas al 0
             return true;
         }
         return false;
+    }
+
+    // Getters y setters
+
+    public Inventario getInventario() {
+        return inventario;
     }
 }

@@ -12,6 +12,10 @@ public class Llave extends Objeto {
         super("Llave", TipoObjeto.LLAVE);
     }
 
+    public Llave(String nombre) {
+        super(nombre, TipoObjeto.LLAVE);   
+    }
+
     @Override
     public void interactuar(Jugador jugador) {
         System.out.println("Has recogido una llave.");

@@ -24,6 +24,16 @@ public class Perro extends Npc{
         }
 
         // Revisar si tienes carne en el inventario
+        Objeto carne =jugador.getInventario().getObjetoInventario("carne");
+        if (carne != null) {
+            jugador.getInventario().eliminarObjeto(carne);
+            System.out.println("El perro se come la carne y comienza a ladrar");
+            ladrando = true;
+            Monstruo.actualizarCoordenadasDeTodos(0, 0, 1); // Cuando el perro comience a ladrar, se mueven los monstruos a una parte innacesible del mapa.
+            return;
+        }
+        
+        /* 
         Inventario inventario = jugador.getInventario();
         for (Objeto objeto : inventario.getObjetos()) {
             if(objeto instanceof Carne) {
@@ -33,6 +43,7 @@ public class Perro extends Npc{
                 return;
             }
         }
+        */
 
         // Si no
         if (!ladrando) {

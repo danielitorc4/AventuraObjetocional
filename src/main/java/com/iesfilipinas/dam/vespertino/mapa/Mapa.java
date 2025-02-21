@@ -259,8 +259,8 @@ public class Mapa {
     }
 
     public boolean hayMonstruoEn(int x, int y, int z) { // Revisa si hay una instancia del monstruo en la casilla
-        for (Npc npc : obtenerOCrearCasilla(x, y, z).getNPCs()) {
-            if (npc instanceof Monstruo) {
+        for (Monstruo monstruo : Monstruo.getTodosLosMonstruos()) {
+            if (monstruo.getX() == x && monstruo.getY() == y && monstruo.getZ() == z) {
                 return true;
             }
         }

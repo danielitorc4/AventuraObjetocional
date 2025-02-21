@@ -109,8 +109,12 @@ public class Juego {
 
         Monstruo monstruo = new Monstruo(1, 10, 3, "Monstruo");
         Monstruo monstruoAux = new Monstruo(2, 10, 3, "Monstruo");
+
+        // No voy a colocarlos en casillas
+        /*  
         mapa.colocarNPC(monstruo.getX(), monstruo.getY(), monstruo.getZ(), monstruo);
         mapa.colocarNPC(monstruoAux.getX(), monstruoAux.getY(), monstruoAux.getZ(), monstruoAux);
+        */
     }
 
     private void inicializarObjetos(Mapa mapa) {
@@ -142,6 +146,11 @@ public class Juego {
         Escalera escaleraP1_2 = new Escalera(2, 10, 3);
         mapa.colocarObjeto(escaleraP1.getX(), escaleraP1.getY(), escaleraP1.getZ(), escaleraP1);
         mapa.colocarObjeto(escaleraP1_2.getX(), escaleraP1_2.getY(), escaleraP1_2.getZ(), escaleraP1_2);
+
+            Puerta puertaSotano = new Puerta(1, 10, 2, "Puerta_Sotano");
+            Puerta puertaSotano2 = new Puerta(2, 10, 2, "Puerta_Sotano");
+            escaleraP1.getInventario().agregarObjeto(puertaSotano);
+            escaleraP1_2.getInventario().agregarObjeto(puertaSotano2);
 
         Escalera escaleraSotano = new Escalera(1, 10, 0);
         Escalera escaleparSotano_2 = new Escalera(2, 10, 0);
