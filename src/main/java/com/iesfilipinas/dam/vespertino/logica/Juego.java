@@ -142,15 +142,15 @@ public class Juego {
         mapa.colocarObjeto(escaleraPB.getX(), escaleraPB.getY(), escaleraPB.getZ(), escaleraPB);
         mapa.colocarObjeto(escaleraPB_2.getX(), escaleraPB_2.getY(), escaleraPB_2.getZ(), escaleraPB_2);
 
+            Puerta puertaSotano = new Puerta(1, 10, 2, "Puerta_Sotano");
+            Puerta puertaSotano2 = new Puerta(2, 10, 2, "Puerta_Sotano");
+            escaleraPB.getInventario().agregarObjeto(puertaSotano);
+            escaleraPB_2.getInventario().agregarObjeto(puertaSotano2);
+
         Escalera escaleraP1 = new Escalera(1, 10, 3);
         Escalera escaleraP1_2 = new Escalera(2, 10, 3);
         mapa.colocarObjeto(escaleraP1.getX(), escaleraP1.getY(), escaleraP1.getZ(), escaleraP1);
         mapa.colocarObjeto(escaleraP1_2.getX(), escaleraP1_2.getY(), escaleraP1_2.getZ(), escaleraP1_2);
-
-            Puerta puertaSotano = new Puerta(1, 10, 2, "Puerta_Sotano");
-            Puerta puertaSotano2 = new Puerta(2, 10, 2, "Puerta_Sotano");
-            escaleraP1.getInventario().agregarObjeto(puertaSotano);
-            escaleraP1_2.getInventario().agregarObjeto(puertaSotano2);
 
         Escalera escaleraSotano = new Escalera(1, 10, 0);
         Escalera escaleparSotano_2 = new Escalera(2, 10, 0);

@@ -1,5 +1,7 @@
 package com.iesfilipinas.dam.vespertino.entidades.objetos;
 
+import java.util.ArrayList;
+
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Inventario;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.logica.InputReader;
@@ -10,6 +12,7 @@ public class Escalera extends Objeto {
 
     public Escalera(int x, int y, int z) {
         super("Escalera", TipoObjeto.ESCALERA, x, y, z);
+         this.inventario = new Inventario(new ArrayList<>());
     }
 
     public void interactuar(Jugador jugador) {
@@ -64,7 +67,7 @@ public class Escalera extends Objeto {
 
         Objeto puerta = inventario.getObjetoInventario("Puerta_Sotano");
         Puerta puerta_sotano = (Puerta) puerta;
-        
+
         if (z == 2 && puerta_sotano.isAbierta()) {
             jugador.setZ(0); // Del piso 2 pasas al 0
             return true;

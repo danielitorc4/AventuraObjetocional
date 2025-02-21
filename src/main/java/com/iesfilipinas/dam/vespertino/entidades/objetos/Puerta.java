@@ -1,19 +1,27 @@
 package com.iesfilipinas.dam.vespertino.entidades.objetos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 
 public class Puerta extends Objeto {
 
     private boolean abierta;
+     private static List<Puerta> todasLasPuertas = new ArrayList<>();
 
     public Puerta(int x, int y, int z) {
         super("Puerta", TipoObjeto.PUERTA, x, y, z);
         this.abierta = false;
+        todasLasPuertas.add(this);
+
     }
 
     public Puerta(int x, int y, int z, String nombre) {
         super(nombre, TipoObjeto.PUERTA, x, y, z);
         this.abierta = false;
+        todasLasPuertas.add(this);
+
     }
 
     @Override
@@ -54,16 +62,13 @@ public class Puerta extends Objeto {
     }
 
     private boolean abrirPuerta(Jugador jugador) {
-        if (this.nombre.equals(("Puerta_Sotano"))) {
-            Objeto llave_sotano = jugador.getInventario().getObjetoInventario("Llave_Sotano"); // Busco un objeto cuyo nombre sea llave
-
-            if (llave_sotano != null && llave_sotano instanceof Llave) { // Si hay alguno
-                jugador.getInventario().eliminarObjeto(llave_sotano); // Lo elimino y abro la puerta
-                abierta = true;
-                return true;
-            } else {
-                return false;
+        if (this.nombre.equals(("Puerta_Sotano"))) { // Si se abre 1 puerta del sótano, se abre el resto también.
+            for (Puerta puerta : todasLasPuertas) {
+                if (puerta.nombre.equals("Puerta_Sotano")) {
+                    puerta.abierta = true;
+                }
             }
+            return true;
         }
 
 
