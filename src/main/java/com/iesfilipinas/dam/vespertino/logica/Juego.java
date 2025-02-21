@@ -160,8 +160,8 @@ public class Juego {
         mapa.colocarObjeto(escaleparSotano_2.getX(), escaleparSotano_2.getY(), escaleparSotano_2.getZ(), escaleparSotano_2);
 
         Estanteria mesitaPB = new Estanteria(1, random(0, 1), random(1, 4), TipoObjeto.MESITA);
-            
-            mesitaPB.getInventario().agregarObjeto(mesitaPB)
+
+            mesitaPB.getInventario().agregarObjeto(mesitaPB);
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)
