@@ -1,5 +1,6 @@
 package com.iesfilipinas.dam.vespertino.logica;
 
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Carne;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Congelador;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Escalera;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Estanteria;
@@ -7,6 +8,7 @@ import com.iesfilipinas.dam.vespertino.entidades.objetos.Llave;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Puerta;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Hijo;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
+import com.iesfilipinas.dam.vespertino.entidades.personajes.Monstruo;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Perro;
 import com.iesfilipinas.dam.vespertino.mapa.Mapa;
 
@@ -54,6 +56,11 @@ public class Juego {
 
     private void bucleJuego(Jugador jugador, Mapa mapa) {
         while (jugando) {
+            if (mapa.hayMonstruoEn(jugador.getX(), jugador.getY(), jugador.getZ())) {
+                System.out.println("\nTe ha atacado un monstruo.");
+                jugador.setVida(0);
+            } 
+
             if (!jugador.getVivo()) {
                 System.out.println("Has muerto.");
                 terminarJuego();
@@ -99,6 +106,11 @@ public class Juego {
 
          Hijo hijo = new Hijo("Chaval", random(6, 8), random(5, 10), 2);
         mapa.colocarNPC(hijo.getX(), hijo.getY(), hijo.getZ(), hijo);
+
+        Monstruo monstruo = new Monstruo(1, 10, 3, "Monstruo");
+        Monstruo monstruoAux = new Monstruo(2, 10, 3, "Monstruo");
+        mapa.colocarNPC(monstruo.getX(), monstruo.getY(), monstruo.getZ(), monstruo);
+        mapa.colocarNPC(monstruoAux.getX(), monstruoAux.getY(), monstruoAux.getZ(), monstruoAux);
     }
 
     private void inicializarObjetos(Mapa mapa) {
@@ -117,6 +129,9 @@ public class Juego {
    
         Congelador congelador = new Congelador(random(6, 8), random(0, 3), 2);
         mapa.colocarObjeto(congelador.getX(), congelador.getY(), congelador.getZ(), congelador);
+
+            Carne carne = new Carne();
+            congelador.getInventario().agregarObjeto(carne);
 
         Escalera escaleraPB = new Escalera(1, 10, 2);
         Escalera escaleraPB_2 = new Escalera(2, 10, 2);

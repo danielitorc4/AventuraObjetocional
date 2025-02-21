@@ -17,7 +17,10 @@ public class Estanteria extends Objeto {
 
     @Override
     public void interactuar(Jugador jugador) {
-        mostrarContenido(jugador);
+        if(!mostrarContenido(jugador)) {    // Si no hay nada que no pida input al usuario
+            return;
+        }
+
         String nombre = InputReader.leerLineaMinusculas();
         Objeto objeto = inventario.getObjetoInventario(nombre); // Busco por el nombre el objeto
 
@@ -31,13 +34,15 @@ public class Estanteria extends Objeto {
         }
     }
 
-    private void mostrarContenido(Jugador jugador) {
+    private boolean mostrarContenido(Jugador jugador) {
         if (inventario.getObjetos().length > 0) {
             System.out.println("\n¿Qué objeto quieres coger?");
             inventario.mostrarInventario();
+            return true;
            
         } else {
             System.out.println("No hay nada en la estantería");
+            return false;
         }
     }
 

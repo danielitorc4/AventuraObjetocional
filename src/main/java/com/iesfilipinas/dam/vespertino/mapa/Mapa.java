@@ -2,6 +2,7 @@ package com.iesfilipinas.dam.vespertino.mapa;
 
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Objeto;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
+import com.iesfilipinas.dam.vespertino.entidades.personajes.Monstruo;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Npc;
 import com.iesfilipinas.dam.vespertino.logica.InputReader;
 
@@ -255,6 +256,15 @@ public class Mapa {
             }
         }
 
+    }
+
+    public boolean hayMonstruoEn(int x, int y, int z) { // Revisa si hay una instancia del monstruo en la casilla
+        for (Npc npc : obtenerOCrearCasilla(x, y, z).getNPCs()) {
+            if (npc instanceof Monstruo) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

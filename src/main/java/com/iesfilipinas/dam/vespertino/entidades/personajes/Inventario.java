@@ -22,7 +22,6 @@ public class Inventario {
     }
 
     public void mostrarInventario() {
-        System.out.println("Objetos en el inventario:");
         for (Objeto objeto : objetos) {
             System.out.println("- " + objeto.getNombre());
         }
