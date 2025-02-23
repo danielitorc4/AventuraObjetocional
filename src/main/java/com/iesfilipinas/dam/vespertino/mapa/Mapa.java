@@ -106,25 +106,25 @@ public class Mapa {
         switch (input) {
             case "arriba","w" -> {
                 if (!esUnMovimientoValido(jugador, input)) { 
-                    break;
+                    return;
                 }
                 jugador.setX(jugador.getX() - 1);
             }
             case "abajo", "s" -> {
                  if (!esUnMovimientoValido(jugador, input)) { 
-                     break;
+                     return;
                  }
                  jugador.setX(jugador.getX() + 1);
              }
             case "izquierda", "a" -> {
                  if (!esUnMovimientoValido(jugador, input)) { 
-                     break;
+                     return;
                  }
                  jugador.setY(jugador.getY() - 1);
              }
             case "derecha", "d" -> { 
                  if (!esUnMovimientoValido(jugador, input)) { 
-                     break;
+                     return;
                  }
                  jugador.setY(jugador.getY() + 1);
              }
@@ -132,6 +132,21 @@ public class Mapa {
                  Casilla casilla = obtenerOCrearCasilla(jugador.getX(), jugador.getY(), jugador.getZ());
                  mostrarInteractuablesEInteractuar(casilla);
 
+             }
+             case "inventario", "i" -> {
+                if (jugador.getInventario().getObjetos().length == 0) {
+                    System.out.println("El inventario está vacío.");
+                    return;
+                }
+                
+                System.out.println("Qué objeto quieres usar?");
+                jugador.getInventario().mostrarInventario();
+                String respuesta = InputReader.leerLineaMinusculas();
+                for (Objeto objeto : jugador.getInventario().getObjetos()) {
+                    if(objeto.getNombre().equalsIgnoreCase(respuesta)) {
+                        objeto.interactuar(jugador);
+                    }
+                }
              }
         }
     }

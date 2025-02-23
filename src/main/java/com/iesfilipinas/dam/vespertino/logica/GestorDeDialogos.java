@@ -37,12 +37,12 @@ public class GestorDeDialogos {
                 "Solo entonces podré encontrar un resquicio de paz en este laberinto de dolor.\n");
     
         nombresDialogos.add("Instrucciones");
-        textosDialogos.add("Instrucciones y consejos: \n" +
+        textosDialogos.add(" -- Instrucciones y consejos -- \n" +
                 "Para moverte, utiliza las teclas WASD como inputs. \n" +
                 "Para interactuar con los objetos, utiliza la tecla E. \n" +
                 "Si al lado de una casilla ves un asterisco '*' significa que hay algo con lo que interactuar. \n" +
                 "Interactúa varias veces con las cosas para asegurarte de que no te dejas nada. \n" +
-                "¡Disfruta del juego!");
+                "¡Disfruta del juego!" + "\n---------------------------------------------------------------------------");
     }
 
     public static String getDialogo(String dialogo) {

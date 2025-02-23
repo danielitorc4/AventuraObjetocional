@@ -15,6 +15,11 @@ public class Estanteria extends Objeto {
         this.inventario = new Inventario(new ArrayList<>());
     }
 
+    public Estanteria(int x, int y, int z, String nombre, TipoObjeto tipo) {
+        super(nombre, tipo, x, y, z);
+        this.inventario = new Inventario(new ArrayList<>());
+    }
+
     @Override
     public void interactuar(Jugador jugador) {
         if(!mostrarContenido(jugador)) {    // Si no hay nada que no pida input al usuario

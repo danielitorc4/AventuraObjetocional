@@ -16,7 +16,7 @@ public class Carne extends Objeto {
 
     @Override
     public void interactuar(Jugador jugador) {
-        jugador.getInventario().agregarObjeto(this);
+        System.out.println("Es un trozo de carne.");
     }
 
 }

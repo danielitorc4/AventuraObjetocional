@@ -9,4 +9,8 @@ public class Main {
         aventuraConversacional.iniciarJuego();
     }
 
+    /* Funcionalidades por añadir:
+     * - Acceso a los objetos por su índice en lugar de pedir al jugador que escriba "Estanteria" por ejemplo.
+     */
+
 }

@@ -1,10 +1,12 @@
 package com.iesfilipinas.dam.vespertino.logica;
 
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Armario;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Carne;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Congelador;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Escalera;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Estanteria;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Llave;
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Nota;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Puerta;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.TipoObjeto;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Hijo;
@@ -38,10 +40,13 @@ public class Juego {
         System.out.println("¡Bienvenido a " + this.nombre + "!");
         System.out.println("¿Cuál es tu nombre?");
         String nombreJugador = InputReader.leerLineaMinusculas();
+        System.out.println();
 
         Jugador jugador = new Jugador(5, 5, 1, nombreJugador);
         Mapa mapa = new Mapa(jugador);
         inicializarJuego(mapa);
+        System.out.println(GestorDeDialogos.getDialogo("Instrucciones"));
+        System.out.println();
         System.out.println(GestorDeDialogos.getDialogo("inicioJuego"));
 
         bucleJuego(jugador, mapa);
@@ -96,6 +101,7 @@ public class Juego {
         System.out.println("Izquierda | A");
         System.out.println("Derecha | D");
         System.out.println("Interactuar | E");
+        System.out.println("Inventario | I");
         System.out.println("Salir");
         System.out.println();
     }
@@ -159,9 +165,13 @@ public class Juego {
         mapa.colocarObjeto(escaleraSotano.getX(), escaleraSotano.getY(), escaleraSotano.getZ(), escaleraSotano);
         mapa.colocarObjeto(escaleparSotano_2.getX(), escaleparSotano_2.getY(), escaleparSotano_2.getZ(), escaleparSotano_2);
 
-        Estanteria mesitaPB = new Estanteria(1, random(0, 1), random(1, 4), TipoObjeto.MESITA);
+        Estanteria mesitaPB = new Estanteria(random(1, 4), random(0, 1), 2,"Mesita", TipoObjeto.MESITA);
+        mapa.colocarObjeto(mesitaPB.getX(), mesitaPB.getY(), mesitaPB.getZ(),mesitaPB);
 
-            mesitaPB.getInventario().agregarObjeto(mesitaPB);
+            Nota notaPB = new Nota("NotaPB");
+            mesitaPB.getInventario().agregarObjeto(notaPB);
+            
+        Armario armarioP1 = new Armario(5, random(7, 9), 3,"Armario", TipoObjeto.ARMARIO);
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)

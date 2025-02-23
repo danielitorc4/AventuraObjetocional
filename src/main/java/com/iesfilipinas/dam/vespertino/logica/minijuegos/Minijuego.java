@@ -6,6 +6,7 @@ public abstract class Minijuego {
 
     protected String nombre;
     protected boolean activo;
+    // Pensé en añadir un atributo "resuelto" pero no terminé de ver cómo implementarlo correctamente
 
     public Minijuego(String nombre) {
         this.nombre = nombre;
