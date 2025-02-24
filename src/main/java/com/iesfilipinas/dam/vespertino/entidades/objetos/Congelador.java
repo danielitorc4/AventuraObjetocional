@@ -2,7 +2,7 @@ package com.iesfilipinas.dam.vespertino.entidades.objetos;
 
 import java.util.ArrayList;
 
-import com.iesfilipinas.dam.vespertino.entidades.personajes.Inventario;
+import com.iesfilipinas.dam.vespertino.entidades.Inventario;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.logica.ContenedorDeBooleanos;
 import com.iesfilipinas.dam.vespertino.logica.InputReader;

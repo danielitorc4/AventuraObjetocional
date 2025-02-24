@@ -2,6 +2,8 @@ package com.iesfilipinas.dam.vespertino.entidades.personajes;
 
 import java.util.ArrayList;
 
+import com.iesfilipinas.dam.vespertino.entidades.Inventario;
+
 public class Jugador extends Persona {
  
     private int vida;

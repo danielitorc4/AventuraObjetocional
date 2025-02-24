@@ -1,4 +1,4 @@
-package com.iesfilipinas.dam.vespertino.entidades.personajes;
+package com.iesfilipinas.dam.vespertino.entidades;
 
 import java.util.ArrayList;
 import java.util.List;

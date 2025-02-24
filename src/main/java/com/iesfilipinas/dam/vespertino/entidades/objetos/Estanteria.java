@@ -2,9 +2,11 @@ package com.iesfilipinas.dam.vespertino.entidades.objetos;
 
 import java.util.ArrayList;
 
-import com.iesfilipinas.dam.vespertino.entidades.personajes.Inventario;
+import com.iesfilipinas.dam.vespertino.entidades.Inventario;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
+import com.iesfilipinas.dam.vespertino.logica.ContenedorDeBooleanos;
 import com.iesfilipinas.dam.vespertino.logica.InputReader;
+import com.iesfilipinas.dam.vespertino.logica.minijuegos.Persecucion;
 
 public class Estanteria extends Objeto {
 
@@ -33,6 +35,10 @@ public class Estanteria extends Objeto {
 
         if (this.tipo == TipoObjeto.MESITA) {   // Los diferencio por si es un futuro quisiera añadir un puzzle por ejemplo
             recogerObjeto(jugador);
+            if (this.z == 3 && !ContenedorDeBooleanos.getEstadoBooleano("persecucionCompleta")) {
+                Persecucion persecucion = new Persecucion();
+                persecucion.inicializarMinijuego(jugador);
+            }
             return;
         }
 

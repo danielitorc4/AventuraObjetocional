@@ -1,5 +1,6 @@
 package com.iesfilipinas.dam.vespertino.mapa;
 
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Armario;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Objeto;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Monstruo;
@@ -185,7 +186,7 @@ public class Mapa {
             case "H": return TiposDeTerreno.HABITACION; 
             case "CD": return TiposDeTerreno.MUSEO;
             case "PA": return TiposDeTerreno.PASILLO;
-            case "HN": return TiposDeTerreno.DORMITORIO_INFANTIL;
+            case "HN": return TiposDeTerreno.DORM_INFANTIL;
             case "HP": return TiposDeTerreno.DORMITORIO;
             // Desconocido
             default: return TiposDeTerreno.DESCONOCIDO;
@@ -204,6 +205,11 @@ public class Mapa {
         int newX = jugador.getX();
         int newY = jugador.getY();
         int newZ = jugador.getZ();
+
+        if (Armario.isEscondido()) {    
+            System.out.println("No puedes moverte mientras estés en el armario.");
+            return false;
+        }
         
         switch (direccion) { // Nueva posición
             case "arriba", "w" -> newX--;

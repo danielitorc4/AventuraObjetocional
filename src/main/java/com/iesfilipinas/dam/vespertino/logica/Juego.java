@@ -13,6 +13,8 @@ import com.iesfilipinas.dam.vespertino.entidades.personajes.Hijo;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Monstruo;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Perro;
+import com.iesfilipinas.dam.vespertino.logica.minijuegos.GestorMinijuegos;
+import com.iesfilipinas.dam.vespertino.logica.minijuegos.Persecucion;
 import com.iesfilipinas.dam.vespertino.mapa.Mapa;
 
 import java.util.Random;
@@ -60,7 +62,9 @@ public class Juego {
         ContenedorDeBooleanos.inicializarBooleanos();
     }
 
-    private void bucleJuego(Jugador jugador, Mapa mapa) {
+    public void bucleJuego(Jugador jugador, Mapa mapa) {
+        
+
         while (jugando) {
             if (mapa.hayMonstruoEn(jugador.getX(), jugador.getY(), jugador.getZ())) {
                 System.out.println("\nTe ha atacado un monstruo.");
@@ -79,6 +83,13 @@ public class Juego {
             System.out.println();
 
             mapa.realizarAccionOMovimiento(jugador, movimiento);
+
+            if (GestorMinijuegos.getMinijuegoActual() instanceof Persecucion persecucion) {
+                if (persecucion.getNombre().equalsIgnoreCase("persecucion") && persecucion.isActivo()) {
+
+                    persecucion.buclePersecucion(jugador);
+                }
+            }
     
             // Comprobaciones para terminar el juego
             if (movimiento.equalsIgnoreCase("salir")) {
@@ -171,7 +182,14 @@ public class Juego {
             Nota notaPB = new Nota("NotaPB");
             mesitaPB.getInventario().agregarObjeto(notaPB);
             
-        Armario armarioP1 = new Armario(5, random(7, 9), 3,"Armario", TipoObjeto.ARMARIO);
+        Armario armarioP1 = new Armario("Armario", TipoObjeto.ARMARIO,5, random(7, 9), 3);
+        mapa.colocarObjeto(armarioP1.getX(), armarioP1.getY(), armarioP1.getZ(), armarioP1);
+
+        Estanteria mesitaP1 = new Estanteria(random(6, 7), 9, 3, "Mesita", TipoObjeto.MESITA);
+        mapa.colocarObjeto(mesitaP1.getX(), mesitaP1.getY(), mesitaP1.getZ(),mesitaP1);
+
+            Nota nota2 = new Nota("NotaP1");
+            mesitaP1.getInventario().agregarObjeto(nota2);
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)

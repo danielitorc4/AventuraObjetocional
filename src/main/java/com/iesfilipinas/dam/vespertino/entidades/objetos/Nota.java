@@ -18,9 +18,14 @@ public class Nota extends Objeto {
         super(nombre, TipoObjeto.NOTA);
     }
 
-    public void interactuar(Jugador jugador) {
+    public void interactuar(Jugador jugador) {  // Seguramente sea mejor renombrar los booleanos del Contenedor para que sean iguales que la variable nombre y así no hacer múltiples "if".
         System.out.println(GestorDeDialogos.getDialogo(nombre));
-        ContenedorDeBooleanos.cambiarEstadoBooleano("notaPBleida", true);
+        if (this.nombre == "NotaPB") {
+            ContenedorDeBooleanos.cambiarEstadoBooleano("notaPBleida", true);
+        }
+        if (this.nombre == "NotaP1") {
+            ContenedorDeBooleanos.cambiarEstadoBooleano("notaP1Leida", true);
+        }
     }
 
 }

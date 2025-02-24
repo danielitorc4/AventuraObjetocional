@@ -35,6 +35,15 @@ public class GestorDeDialogos {
                 "He cruzado líneas que nunca debí tocar, manipulando la vida misma en busca de respuestas.\n" +
                 "Pero lo que he descubierto es una carga demasiado pesada para llevar. Antes de que la locura me atrape, debo olvidar.\n" +
                 "Solo entonces podré encontrar un resquicio de paz en este laberinto de dolor.\n");
+
+        nombresDialogos.add("NotaP1");
+        textosDialogos.add("Nota de Daniel\r\n" +  
+                "No puedo huir de la verdad, por mucho que lo desee. Al repasar mis experimentos, una imagen se clava en mi mente: la de mi esposa y mi hijo, atrapados\n"
+                + "en un horror que yo mismo creé. La desesperación me llevó a cruzar un límite inimaginable.\n"
+                + "Cuando la ciencia se volvió mi única compañía, utilicé a los que más amaba como sujetos de prueba, convencido de que podría salvarlos de una muerte inminente.\n"
+                + "Ahora, cada momento de lucidez es un recordatorio de mi traición. Ellos pagaron el precio de mis ambiciones, y sus rostros persiguen mis pensamientos, incluso\n"
+                + "en mi intento por olvidar. Este brebaje es mi última esperanza para liberarme de esta pesadilla, aunque sé que la culpa jamás me abandonará.\n\n"
+                );
     
         nombresDialogos.add("Instrucciones");
         textosDialogos.add(" -- Instrucciones y consejos -- \n" +
