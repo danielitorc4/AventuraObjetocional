@@ -52,6 +52,14 @@ public class GestorDeDialogos {
                 "Si al lado de una casilla ves un asterisco '*' significa que hay algo con lo que interactuar. \n" +
                 "Interactúa varias veces con las cosas para asegurarte de que no te dejas nada. \n" +
                 "¡Disfruta del juego!" + "\n---------------------------------------------------------------------------");
+
+        nombresDialogos.add("normalEnding");
+        textosDialogos.add("El motor de la lancha resonaba sobre el silencio del océano mientras Daniel se alejaba de la isla. La oscuridad \n" + 
+                        "envolvía el horizonte, y las luces de la costa aún estaban lejos.\\r\\n" + 
+                        "Había logrado escapar. No quedaba rastro del terror que lo había perseguido, ni de los secretos que la isla escondía. \n" + 
+                        "Pero mientras las olas lo llevaban cada vez más lejos, un vacío inexplicable se asentaba en su pecho, como si algo importante hubiera quedado atrás.\r\n" + 
+                        "La isla desapareció entre la niebla, llevándose consigo las respuestas que Daniel nunca llegó a buscar.\r\n" + 
+                        "FIN");
     }
 
     public static String getDialogo(String dialogo) {

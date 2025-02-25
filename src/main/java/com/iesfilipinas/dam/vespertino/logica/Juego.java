@@ -2,6 +2,7 @@ package com.iesfilipinas.dam.vespertino.logica;
 
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Armario;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Carne;
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Combustible;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Congelador;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Escalera;
 import com.iesfilipinas.dam.vespertino.entidades.objetos.Estanteria;
@@ -16,6 +17,8 @@ import com.iesfilipinas.dam.vespertino.entidades.personajes.Perro;
 import com.iesfilipinas.dam.vespertino.logica.minijuegos.GestorMinijuegos;
 import com.iesfilipinas.dam.vespertino.logica.minijuegos.Persecucion;
 import com.iesfilipinas.dam.vespertino.mapa.Mapa;
+import com.iesfilipinas.dam.vespertino.mapa.TiposDeTerreno;
+import com.iesfilipinas.dam.vespertino.entidades.objetos.Lancha;
 
 import java.util.Random;
 
@@ -86,7 +89,6 @@ public class Juego {
 
             if (GestorMinijuegos.getMinijuegoActual() instanceof Persecucion persecucion) {
                 if (persecucion.getNombre().equalsIgnoreCase("persecucion") && persecucion.isActivo()) {
-
                     persecucion.buclePersecucion(jugador);
                 }
             }
@@ -96,13 +98,18 @@ public class Juego {
                 terminarJuego();
                 System.out.println("Juego terminado.");
             }
+
+            if (mapa.obtenerOCrearCasilla(jugador.getX(), jugador.getY(), jugador.getZ()).getTerreno().equals(TiposDeTerreno.CONTINENTE)) {
+                System.out.println(GestorDeDialogos.getDialogo("normalEnding"));
+                System.out.println("\nMuchas gracias por jugar, " + jugador.getNombre());
+                terminarJuego();
+            }
     
         }
     }
 
     private void terminarJuego() {
         this.jugando = false;
-        InputReader.leerLineaMinusculas();
     }
 
     private void mostrarMenuOpciones() {
@@ -190,6 +197,19 @@ public class Juego {
 
             Nota nota2 = new Nota("NotaP1");
             mesitaP1.getInventario().agregarObjeto(nota2);
+
+            Llave llaveSotano = new Llave("LlaveSotano");
+            mesitaP1.getInventario().agregarObjeto(llaveSotano);
+
+        Estanteria estanteriaSotano = new Estanteria(random(1, 3), 0 , 0, "EstanteriaSotano", TipoObjeto.ESTANTERIA);
+        mapa.colocarObjeto(estanteriaSotano.getX(), estanteriaSotano.getY(), estanteriaSotano.getZ(),estanteriaSotano);
+
+            Combustible combustible = new Combustible("Combustible", TipoObjeto.COMBUSTIBLE);
+            estanteriaSotano.getInventario().agregarObjeto(combustible);
+
+        Lancha lancha = new Lancha (5, 7, 1);
+        mapa.colocarObjeto(lancha.getX(), lancha.getY(), lancha.getZ(), lancha);
+
     }
 
     private int random(int min, int max) { // Método para simplificar el uso de random (así no uso .nextInt en cada llamada)

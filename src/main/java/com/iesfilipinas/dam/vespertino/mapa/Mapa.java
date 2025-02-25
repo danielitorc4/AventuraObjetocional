@@ -5,6 +5,7 @@ import com.iesfilipinas.dam.vespertino.entidades.objetos.Objeto;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Monstruo;
 import com.iesfilipinas.dam.vespertino.entidades.personajes.Npc;
+import com.iesfilipinas.dam.vespertino.logica.ContenedorDeBooleanos;
 import com.iesfilipinas.dam.vespertino.logica.InputReader;
 
 public class Mapa {
@@ -192,7 +193,7 @@ public class Mapa {
             default: return TiposDeTerreno.DESCONOCIDO;
         }
     }
-    private Casilla obtenerOCrearCasilla(int x, int y, int z) {
+    public Casilla obtenerOCrearCasilla(int x, int y, int z) { // Lo hice public para acceder desde Juego para detectar casillas de continente y terminar el juego
         if (x >= 0 && y >= 0 && z >= 0 && x < mapaMaxX && y < mapaMaxY && z < mapaMaxZ) { // Límites del mapa
             if (terrenos[x][y][z] == null) { // Si no está creada, la instanciamos
                 terrenos[x][y][z] = new Casilla(x, y, z, sacarTerrenoCasilla(plantillaTerrenos[z][x][y])); // Primero indexa por la profundidad y luego las dimensiones
@@ -232,11 +233,15 @@ public class Mapa {
             jugador.mostrarVida();
             return false;
         }
-        if (newCasilla.getTerreno().equals(TiposDeTerreno.AGUA)) { // Casilla de agua
+
+        if(newCasilla.getTerreno().equals(TiposDeTerreno.AGUA)) {
+            if (jugador.getZ() == 1 && ContenedorDeBooleanos.getEstadoBooleano("lanchaEncendida")) {
+                return true;
+            }
             System.out.println("No puedes meterte en el agua.");
+
             return false;
         }
-        // Añadir otro if para el agua con y sin lancha
         
         return true;
     }

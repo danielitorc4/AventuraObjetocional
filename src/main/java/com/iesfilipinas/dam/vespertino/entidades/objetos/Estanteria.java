@@ -7,6 +7,7 @@ import com.iesfilipinas.dam.vespertino.entidades.personajes.Jugador;
 import com.iesfilipinas.dam.vespertino.logica.ContenedorDeBooleanos;
 import com.iesfilipinas.dam.vespertino.logica.InputReader;
 import com.iesfilipinas.dam.vespertino.logica.minijuegos.Persecucion;
+import com.iesfilipinas.dam.vespertino.logica.minijuegos.RuletaRusa;
 
 public class Estanteria extends Objeto {
 
@@ -24,12 +25,20 @@ public class Estanteria extends Objeto {
 
     @Override
     public void interactuar(Jugador jugador) {
-        if(!mostrarContenido(jugador)) {    // Si no hay nada que no pida input al usuario
+        
+        if (this.tipo == TipoObjeto.ESTANTERIA) {
+            if (this.nombre.equals("EstanteriaSotano") && !ContenedorDeBooleanos.getEstadoBooleano("ruletaRusaCompleta")) {
+                RuletaRusa ruletaRusa = new RuletaRusa("RuletaRusa");
+                ruletaRusa.inicializarMinijuego(jugador);
+            }
+            if(!mostrarContenido(jugador)) {    // Si no hay nada que no pida input al usuario
+                return;
+            }
+            recogerObjeto(jugador);
             return;
         }
-
-        if (this.tipo == TipoObjeto.ESTANTERIA) {
-            recogerObjeto(jugador);
+        
+        if(!mostrarContenido(jugador)) {    // Si no hay nada que no pida input al usuario
             return;
         }
 

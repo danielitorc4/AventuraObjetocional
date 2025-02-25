@@ -16,6 +16,7 @@ public class Persecucion extends Minijuego{
 
     public void inicializarMinijuego(Jugador jugador) {
         GestorMinijuegos.setMinijuegoActual(this);
+        System.out.println("¡Parece que algo se acerca!");
         activo = true;
     }
 

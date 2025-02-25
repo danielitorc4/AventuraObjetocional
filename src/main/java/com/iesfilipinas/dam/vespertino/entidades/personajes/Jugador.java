@@ -54,4 +54,8 @@ public class Jugador extends Persona {
         return vivo;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
 }

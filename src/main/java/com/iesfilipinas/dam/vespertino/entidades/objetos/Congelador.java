@@ -20,7 +20,7 @@ public class Congelador extends Objeto {
     @Override
     public void interactuar(Jugador jugador) {
        if(ContenedorDeBooleanos.getEstadoBooleano("acertijoCongeladorResuelto")) {
-            if(!mostrarContenido(jugador)) {    // Si no hay nada que no pida input al usuario
+            if(!mostrarContenido(jugador)) {    // Si no hay nada, que no pida input al usuario
                 return;
             }
             

@@ -13,6 +13,6 @@ public abstract class Minijuego {
         this.activo = false;
     }
 
-    public void inicializarMinijuego(Jugador jugador) {}
+    public abstract void inicializarMinijuego(Jugador jugador);
 
 }

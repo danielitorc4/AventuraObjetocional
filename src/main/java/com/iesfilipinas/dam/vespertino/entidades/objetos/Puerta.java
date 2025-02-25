@@ -47,7 +47,7 @@ public class Puerta extends Objeto {
         }
 
         if (jugador.getZ() == 2 && this.nombre.equals("Puerta_Sotano")) {
-            if (abrirPuerta(jugador)) {
+            if (!abierta && abrirPuerta(jugador)) {
                 System.out.println("Has abierto la puerta del sótano.");
                 jugador.setZ(0);
                 return;
@@ -62,15 +62,18 @@ public class Puerta extends Objeto {
     }
 
     private boolean abrirPuerta(Jugador jugador) {
-        if (this.nombre.equals(("Puerta_Sotano"))) { // Si se abre 1 puerta del sótano, se abre el resto también.
-            for (Puerta puerta : todasLasPuertas) {
-                if (puerta.nombre.equals("Puerta_Sotano")) {
-                    puerta.abierta = true;
+        if (this.nombre.equals("Puerta_Sotano")) {
+            Objeto llaveSotano = jugador.getInventario().getObjetoInventario("LlaveSotano");
+            if (llaveSotano instanceof Llave) {
+                for (Puerta puerta : todasLasPuertas) {
+                    if (puerta.nombre.equals("Puerta_Sotano")) {
+                        puerta.abierta = true;
+                    }
                 }
+                return true;
             }
-            return true;
+            return false;
         }
-
 
         Objeto llave = jugador.getInventario().getObjetoInventario("Llave"); // Busco un objeto cuyo nombre sea llave
 

@@ -67,7 +67,8 @@ public class Escalera extends Objeto {
 
         Objeto puerta = inventario.getObjetoInventario("Puerta_Sotano");
         Puerta puerta_sotano = (Puerta) puerta;
-
+        puerta_sotano.interactuar(jugador);
+        
         if (z == 2 && puerta_sotano.isAbierta()) {
             jugador.setZ(0); // Del piso 2 pasas al 0
             return true;

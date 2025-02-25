@@ -10,8 +10,12 @@ public class InputReader {
     }
 
     public static int leerEntero() {
-        int entero = scan.nextInt(); // Creo la variable entero en lugar de retornarlo directamente para poder limpiar el buffer
-        scan.nextLine(); // Limpiar buffer
+        while (!scan.hasNextInt()) {
+            scan.next();
+            System.out.println("Por favor, introduce un número.");
+        }
+        int entero = scan.nextInt(); 
+        scan.nextLine(); 
         return entero;
     }
     

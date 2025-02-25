@@ -12,6 +12,8 @@ public class ContenedorDeBooleanos {
         claves.add("acertijoCongeladorResuelto");
         claves.add("notaPBleida");
         claves.add("persecucionCompleta");
+        claves.add("ruletaRusaCompleta");
+        claves.add("lanchaEncendida");
         // Añadir el resto
         for (int i = 0; i < claves.size(); i++) { // Por cada clave crea un valor y lo pone en falso
             valores.add(false);
