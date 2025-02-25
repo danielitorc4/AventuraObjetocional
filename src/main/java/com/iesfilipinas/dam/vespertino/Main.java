@@ -20,6 +20,7 @@ public class Main {
      * - Descripciones de npcs e historia
      * - Limpieza general de código
      * - Easter eggs (chocarte con la pared 100 veces)
+     * - Tests de JUnit
      */
 
 }
